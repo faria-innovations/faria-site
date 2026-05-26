@@ -1,0 +1,33 @@
+---
+// Engineered Fi — registration-frame mark.
+// Small institutional seal. Used in footer and metadata contexts.
+interface Props {
+  size?: number;
+}
+const { size = 32 } = Astro.props;
+---
+
+<svg
+  class="footer-fi"
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Fi — Faria Innovations registry mark"
+>
+  <rect x="2" y="2" width="96" height="96" fill="none" stroke="#0A1F44" stroke-width="3"/>
+  <!-- registration crosses -->
+  <line x1="50" y1="2" x2="50" y2="10" stroke="#0A1F44" stroke-width="1.5"/>
+  <line x1="50" y1="90" x2="50" y2="98" stroke="#0A1F44" stroke-width="1.5"/>
+  <line x1="2" y1="50" x2="10" y2="50" stroke="#0A1F44" stroke-width="1.5"/>
+  <line x1="90" y1="50" x2="98" y2="50" stroke="#0A1F44" stroke-width="1.5"/>
+  <!-- Fi -->
+  <text x="50" y="62"
+    text-anchor="middle"
+    font-family="'Saira', system-ui, sans-serif"
+    font-size="32"
+    font-weight="800"
+    font-style="italic"
+    fill="#0A1F44">Fi</text>
+</svg>

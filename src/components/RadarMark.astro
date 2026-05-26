@@ -1,0 +1,50 @@
+---
+// Radar variant B — Fi as off-center detected signal.
+// Single-color navy construction. No glow. No animation.
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 36, class: className = '' } = Astro.props;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 1000 1000"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Faria Innovations — signal detected"
+>
+  <!-- concentric rings -->
+  <circle cx="500" cy="500" r="425" fill="none" stroke="#0A1F44" stroke-width="2"/>
+  <circle cx="500" cy="500" r="340" fill="none" stroke="#0A1F44" stroke-width="1.5"/>
+  <circle cx="500" cy="500" r="255" fill="none" stroke="#0A1F44" stroke-width="1.5"/>
+  <circle cx="500" cy="500" r="170" fill="none" stroke="#0A1F44" stroke-width="1.5"/>
+
+  <!-- cardinal registration crosses -->
+  <line x1="500" y1="60" x2="500" y2="90" stroke="#0A1F44" stroke-width="2"/>
+  <line x1="500" y1="910" x2="500" y2="940" stroke="#0A1F44" stroke-width="2"/>
+  <line x1="60" y1="500" x2="90" y2="500" stroke="#0A1F44" stroke-width="2"/>
+  <line x1="910" y1="500" x2="940" y2="500" stroke="#0A1F44" stroke-width="2"/>
+
+  <!-- sweep line: 40° from vertical -->
+  <line x1="500" y1="500" x2="748" y2="108" stroke="#0A1F44" stroke-width="2"/>
+
+  <!-- Fi blip: Ring 3, 138° polar, 72% radius -->
+  <!-- polar: 138° from top = 138° clockwise. x=500+306*sin(138°)=705, y=500-306*cos(138°)=727 -->
+  <circle cx="705" cy="727" r="6" fill="#C81D25"/>
+
+  <!-- registration bracket around Fi blip -->
+  <rect x="660" y="682" width="90" height="90" fill="none" stroke="#0A1F44" stroke-width="2"/>
+
+  <!-- Fi text inside bracket -->
+  <text x="705" y="740"
+    text-anchor="middle"
+    font-family="'Saira', system-ui, sans-serif"
+    font-size="42"
+    font-weight="800"
+    font-style="italic"
+    fill="#0A1F44">Fi</text>
+</svg>

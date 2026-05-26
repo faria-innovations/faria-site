@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes')).sort(
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+
+type Note = (typeof notes)[number];
+const groups = new Map<number, Note[]>();
+notes.forEach((n) => {
+  const y = new Date(n.data.date).getFullYear();
+  const bucket = groups.get(y);
+  if (bucket) bucket.push(n);
+  else groups.set(y, [n]);
+});
+const years = Array.from(groups.keys()).sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Notes — Faria Innovations"
+  description="Signal archive from Faria Innovations."
+>
+  <div class="container">
+    <section class="notes-index">
+      <header class="page-head">
+        <h1 class="page-title">NOTES</h1>
+        <p class="page-subtitle">Signal archive.</p>
+      </header>
+
+      {
+        years.map((year) => {
+          const list = groups.get(year)!;
+          return (
+            <section class="notes-year" aria-label={`Notes filed in ${year}`}>
+              <h2 class="notes-year-label">{year}</h2>
+              <ol class="notes-list" role="list">
+                {list.map((note) => {
+                  const date = new Date(note.data.date).toISOString().slice(0, 10);
+                  const slug = note.id.replace(/\.mdx?$/, '');
+                  return (
+                    <li class="note-row">
+                      <time class="note-row-date" datetime={date}>{date}</time>
+                      <a class="note-row-title" href={`/notes/${slug}`}>{note.data.title}</a>
+                      {note.data.description && (
+                        <span class="note-row-desc">— {note.data.description}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          );
+        })
+      }
+
+      <p class="notes-meta">
+        <a href="/notes/rss.xml">rss →</a>
+      </p>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,23 @@
+{
+  "name": "faria-site",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.0",
+    "@astrojs/rss": "^4.0.10",
+    "@astrojs/sitemap": "^3.7.2",
+    "@fontsource/familjen-grotesk": "^5.1.0",
+    "@fontsource/fraunces": "^5.1.0",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/saira": "^5.2.11",
+    "astro": "^5.6.0"
+  }
+}

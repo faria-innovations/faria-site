@@ -1,0 +1,20 @@
+---
+import FiBadge from './FiBadge.astro';
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-meta">
+        <span>SYSTEM VERSION 2.0</span>
+        <span>BELTSVILLE, MARYLAND</span>
+        <span>ISSUED {site.lastUpdated}</span>
+      </div>
+      <FiBadge size={32} />
+    </div>
+    <p class="footer-legal">© {year} Faria Innovations LLC</p>
+  </div>
+</footer>

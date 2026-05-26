@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionMarker from '../components/SectionMarker.astro';
+import LabsCartographMap from '../components/LabsCartographMap.astro';
+import { ventures } from '../data/ventures';
+import { labs } from '../data/labs';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Faria Innovations — Venture Index"
+  description="Faria Innovations indexes Parcentry, Flight Risk, Labs, and future work by Felipe Alves Faria."
+>
+  <section class="registry-meta">
+    <dl class="container registry-fields">
+      <div class="registry-field"><dt>FILE</dt><dd>{site.legalName}</dd></div>
+      <div class="registry-field"><dt>TYPE</dt><dd>PARENT COMPANY / VENTURE INDEX</dd></div>
+      <div class="registry-field"><dt>INDEX</dt><dd>PARCENTRY / FLIGHT RISK / LABS</dd></div>
+      <div class="registry-field"><dt>LOCATION</dt><dd>BELTSVILLE, MARYLAND</dd></div>
+      <div class="registry-field"><dt>LAST FILED</dt><dd>{site.lastUpdated}</dd></div>
+    </dl>
+  </section>
+
+  <section class="ventures-section" id="ventures" aria-labelledby="ventures-label">
+    <div class="container dossier-grid">
+      <div class="dossier-numeral" aria-hidden="true">01</div>
+      <div class="dossier-entries">
+        <p class="section-label" id="ventures-label">
+          <span>INDEX OF VENTURES</span>
+          <span class="rule" aria-hidden="true"></span>
+        </p>
+        <ol class="venture-list" role="list">
+          {
+            ventures.map((v) => (
+              <li class="venture-row">
+                <p class="venture-category">{v.category}</p>
+                <h3 class="venture-name">
+                  <a href={v.entry}>{v.name}</a>
+                </h3>
+                <p class="venture-desc">{v.description}</p>
+                <p class="venture-signals">
+                  {v.meta.map((m) => <span>{m}</span>)}
+                </p>
+                <div class="venture-links">
+                  <a href={v.entry}>entry →</a>
+                  {v.external && (
+                    <a href={v.external.href} rel="noopener">{v.external.label}</a>
+                  )}
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="labs" aria-labelledby="labs-label">
+    <div class="container">
+      <SectionMarker num="02" label="LABS · WORKING FIELD" id="labs-label" />
+      <div class="labs-list">
+        {
+          labs.map((lab) => (
+            <details class="lab-row">
+              <summary class="lab-summary">
+                <span class="lab-prefix">{lab.prefix}</span>
+                <span class="lab-sep" aria-hidden="true">—</span>
+                <span class="lab-name">{lab.name}</span>
+                <span class="lab-sep" aria-hidden="true">—</span>
+                <span class="lab-desc">{lab.description}</span>
+              </summary>
+              <p class="lab-extra">{lab.expanded}</p>
+              {lab.cartograph && <LabsCartographMap />}
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-label">
+    <div class="container">
+      <SectionMarker num="03" label="ABOUT" id="about-label" />
+      <div class="plain-block">
+        <p>Faria Innovations is operated by Felipe Alves Faria.</p>
+        <p>Beltsville, Maryland.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-label">
+    <div class="container">
+      <SectionMarker num="04" label="CONTACT" id="contact-label" />
+      <div class="plain-block">
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p><a href={site.phoneHref}>{site.phone}</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

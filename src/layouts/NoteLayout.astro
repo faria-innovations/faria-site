@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  date: string | Date;
+  description?: string;
+}
+
+const { title, date, description } = Astro.props;
+const dateObj = date instanceof Date ? date : new Date(date);
+const dateString = dateObj.toISOString().slice(0, 10);
+const isoDate = dateObj.toISOString();
+const pageTitle = `${title} — ${site.name}`;
+
+let path = Astro.url.pathname;
+if (path !== '/' && !path.endsWith('/')) path += '/';
+const canonical = new URL(path, site.url).href;
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description ?? '',
+  datePublished: isoDate,
+  dateModified: isoDate,
+  inLanguage: 'en',
+  url: canonical,
+  author: { '@type': 'Person', name: site.founder },
+  publisher: { '@type': 'Organization', name: site.name, url: site.url },
+};
+---
+
+<BaseLayout title={pageTitle} description={description} ogType="article">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={isoDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  </Fragment>
+
+  <div class="container">
+    <article class="note">
+      <header class="note-header">
+        <p class="note-date"><time datetime={dateString}>{dateString}</time></p>
+        <h1 class="note-title">{title}</h1>
+      </header>
+      <div class="note-body">
+        <slot />
+      </div>
+      <footer class="note-footer">
+        <a href="/notes">← return to notes</a>
+      </footer>
+    </article>
+  </div>
+</BaseLayout>
