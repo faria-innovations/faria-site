@@ -14,8 +14,8 @@
       <circle cx="500" cy="500" r="240" stroke-width="14"/>
       <circle cx="500" cy="500" r="360" stroke-width="14"/>
       <circle cx="500" cy="500" r="480" stroke-width="18"/>
-      <!-- sweep re-aimed at the detected target -->
-      <line x1="500" y1="500" x2="796" y2="828" stroke-width="22"/>
+      <!-- sweep leader, stops just outside lockbox upper-left corner -->
+      <line x1="500" y1="500" x2="670" y2="700" stroke-width="22"/>
       <line x1="500" y1="20"  x2="500" y2="68"  stroke-width="14"/>
       <line x1="500" y1="932" x2="500" y2="980" stroke-width="14"/>
       <line x1="20"  y1="500" x2="68"  y2="500" stroke-width="14"/>
