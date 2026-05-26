@@ -1,30 +1,73 @@
+export interface VentureSignal {
+  /** Short uppercase fact. Real operational signal only — no fake telemetry. */
+  label: string;
+}
+
+export interface VentureMetadataField {
+  /** Uppercase key on the left, e.g. STATUS */
+  key: string;
+  /** Uppercase value on the right, e.g. OPERATIONAL */
+  value: string;
+}
+
 export interface Venture {
-  category: string;        // small uppercase label
-  name: string;            // venture name in Fraunces
+  /** Tiny uppercase category prefix above the venture name. */
+  category: string;
+  /** Venture display name (rendered in the engineered display face). */
+  name: string;
+  /** One-line description in body voice. */
   description: string;
-  entry: string;           // internal detail page
+  /** Internal detail page route. */
+  entry: string;
+  /** Optional external link, e.g. parcentry.com */
   external?: { href: string; label: string };
-  // File-drawer metadata revealed on hover/focus (desktop) and visible
-  // by default on mobile. Rendered as small uppercase labels separated
-  // by oxblood mid-dots.
-  meta: string[];
+  /** Real operational signals shown directly under the description. */
+  signals: VentureSignal[];
+  /** Bottom-row dossier metadata. Mono key/value pairs. */
+  metadata: VentureMetadataField[];
+  /** Optional supporting graphic component name to render in the entry. */
+  graphic?: 'parcel-map';
+  /** Optional modifier flag that tunes the row's typographic atmosphere. */
+  atmosphere?: 'standard' | 'cinematic';
 }
 
 export const ventures: Venture[] = [
   {
-    category: 'commercial real estate',
+    category: 'COMMERCIAL REAL ESTATE SOFTWARE',
     name: 'Parcentry',
-    description: 'Tracks public-record changes across commercial properties.',
+    description:
+      'Tracks public-record changes across commercial properties.',
     entry: '/parcentry',
     external: { href: 'https://parcentry.com', label: 'parcentry.com →' },
-    meta: ['PUBLIC RECORDS', 'CHANGE INTELLIGENCE', 'ACTIVE PRODUCT'],
+    signals: [
+      { label: '281K PARCELS INDEXED' },
+      { label: 'NIGHTLY SCANS' },
+      { label: 'PUBLIC RECORDS' },
+    ],
+    metadata: [
+      { key: 'STATUS',      value: 'OPERATIONAL' },
+      { key: 'SCOPE',       value: 'UNITED STATES' },
+      { key: 'DATA SOURCE', value: 'COUNTY RECORDS' },
+    ],
+    graphic: 'parcel-map',
+    atmosphere: 'standard',
   },
   {
-    category: 'animated series',
+    category: 'ANIMATED SERIES',
     name: 'Flight Risk',
     description:
       'An ongoing world about leaving. Animated, written, scored, never finished.',
     entry: '/flight-risk',
-    meta: ['ANIMATED SERIES', 'PLANET TEROVA', 'IN DEVELOPMENT'],
+    signals: [
+      { label: 'WORLD: PLANET TEROVA' },
+      { label: 'FORMAT: ANIMATED SERIES' },
+      { label: 'IN DEVELOPMENT' },
+    ],
+    metadata: [
+      { key: 'MEDIUM',  value: 'ANIMATION / PROSE / SCORE' },
+      { key: 'STATE',   value: 'OPEN-ENDED' },
+      { key: 'ORIGIN',  value: 'INTERNAL' },
+    ],
+    atmosphere: 'cinematic',
   },
 ];

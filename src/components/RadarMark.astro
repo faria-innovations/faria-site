@@ -1,11 +1,18 @@
 ---
-// Radar variant B — Fi as off-center detected signal.
-// Single-color navy construction. No glow. No animation.
+// RadarSignalMark — single-color navy construction. No red. No glow.
+// 4 concentric rings, sweep line 40° clockwise from vertical, off-center
+// Fi signal on ring 3 with rectilinear corner-bracket registration, and
+// cardinal registration crosses outside the outer ring. All strokes are
+// heavy enough to read like a print-engraved signal diagram at small
+// render sizes.
+
 interface Props {
+  /** Rendered pixel size. Default tuned for masthead. */
   size?: number;
+  /** Optional class for layout hook. */
   class?: string;
 }
-const { size = 36, class: className = '' } = Astro.props;
+const { size = 44, class: className = '' } = Astro.props;
 ---
 
 <svg
@@ -15,36 +22,49 @@ const { size = 36, class: className = '' } = Astro.props;
   viewBox="0 0 1000 1000"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  aria-label="Faria Innovations — signal detected"
+  aria-label="Faria Innovations — signal mark"
 >
-  <!-- concentric rings -->
-  <circle cx="500" cy="500" r="425" fill="none" stroke="#0A1F44" stroke-width="2"/>
-  <circle cx="500" cy="500" r="340" fill="none" stroke="#0A1F44" stroke-width="1.5"/>
-  <circle cx="500" cy="500" r="255" fill="none" stroke="#0A1F44" stroke-width="1.5"/>
-  <circle cx="500" cy="500" r="170" fill="none" stroke="#0A1F44" stroke-width="1.5"/>
+  <g fill="none" stroke="#0A1F44">
+    <!-- 4 concentric rings, radii 120 / 240 / 360 / 480 -->
+    <circle cx="500" cy="500" r="120" stroke-width="14" />
+    <circle cx="500" cy="500" r="240" stroke-width="14" />
+    <circle cx="500" cy="500" r="360" stroke-width="14" />
+    <circle cx="500" cy="500" r="480" stroke-width="18" />
 
-  <!-- cardinal registration crosses -->
-  <line x1="500" y1="60" x2="500" y2="90" stroke="#0A1F44" stroke-width="2"/>
-  <line x1="500" y1="910" x2="500" y2="940" stroke="#0A1F44" stroke-width="2"/>
-  <line x1="60" y1="500" x2="90" y2="500" stroke="#0A1F44" stroke-width="2"/>
-  <line x1="910" y1="500" x2="940" y2="500" stroke="#0A1F44" stroke-width="2"/>
+    <!-- sweep line: 40° clockwise from vertical, ends at 92% of outer radius
+         end = (500 + 0.92*480*sin40°, 500 - 0.92*480*cos40°)
+             = (500 + 284, 500 - 339) = (784, 161) -->
+    <line x1="500" y1="500" x2="784" y2="161" stroke-width="22" />
 
-  <!-- sweep line: 40° from vertical -->
-  <line x1="500" y1="500" x2="748" y2="108" stroke="#0A1F44" stroke-width="2"/>
+    <!-- cardinal registration crosses (outside the outer ring) -->
+    <line x1="500" y1="20"  x2="500" y2="68"  stroke-width="14" />
+    <line x1="500" y1="932" x2="500" y2="980" stroke-width="14" />
+    <line x1="20"  y1="500" x2="68"  y2="500" stroke-width="14" />
+    <line x1="932" y1="500" x2="980" y2="500" stroke-width="14" />
 
-  <!-- Fi blip: Ring 3, 138° polar, 72% radius -->
-  <!-- polar: 138° from top = 138° clockwise. x=500+306*sin(138°)=705, y=500-306*cos(138°)=727 -->
-  <circle cx="705" cy="727" r="6" fill="#C81D25"/>
+    <!-- registration bracket around the Fi signal — rectilinear corners,
+         not a full rect. Bracket centered on the blip area, ~18% of width. -->
+    <polyline points="640,720 640,672 692,672" stroke-width="14" />
+    <polyline points="770,672 822,672 822,720" stroke-width="14" />
+    <polyline points="640,794 640,842 692,842" stroke-width="14" />
+    <polyline points="770,842 822,842 822,794" stroke-width="14" />
+  </g>
 
-  <!-- registration bracket around Fi blip -->
-  <rect x="660" y="682" width="90" height="90" fill="none" stroke="#0A1F44" stroke-width="2"/>
+  <!-- Fi blip: small navy dot at polar (138°, 72% outer radius)
+       x = 500 + 0.72*480*sin138° = 500 + 231 = 731
+       y = 500 - 0.72*480*cos138° = 500 + 257 = 757 — but we lift it slightly
+       so the bracket frames both the dot and the label cleanly. -->
+  <circle cx="731" cy="712" r="14" fill="#0A1F44" />
 
-  <!-- Fi text inside bracket -->
-  <text x="705" y="740"
+  <!-- Fi label inside the bracket -->
+  <text
+    x="731"
+    y="816"
     text-anchor="middle"
-    font-family="'Saira', system-ui, sans-serif"
-    font-size="42"
-    font-weight="800"
+    font-family="'Saira', 'Helvetica Neue', system-ui, sans-serif"
+    font-weight="900"
     font-style="italic"
-    fill="#0A1F44">Fi</text>
+    font-size="86"
+    fill="#0A1F44"
+  >Fi</text>
 </svg>

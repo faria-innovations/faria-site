@@ -1,0 +1,59 @@
+---
+// FARIA / rule / INNOVATIONS lockup, rendered as a controlled SVG.
+// Doesn't depend on Eurostile being present on the visitor's device:
+// uses Saira-900 + skewX for a sharp engineered cast, with a heavy
+// hard horizontal rule beneath. INNOVATIONS sits letterspaced under
+// the rule and is part of the lockup at every size.
+
+interface Props {
+  /** Rendered width in CSS pixels. The component scales proportionally. */
+  width?: number | string;
+  /** Optional explicit aria-label override. */
+  label?: string;
+  /** Optional class for styling hook (margin etc.). */
+  class?: string;
+}
+
+const {
+  width = 168,
+  label = 'Faria Innovations',
+  class: className = '',
+} = Astro.props;
+---
+
+<svg
+  class={className}
+  width={width}
+  viewBox="0 0 200 56"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={label}
+>
+  <!-- FARIA — Saira 900 with forward slant. The strong fallback chain
+       keeps the engineered feel even before Saira loads. -->
+  <g transform="skewX(-7)">
+    <text
+      x="0"
+      y="34"
+      font-family="'Saira', 'Helvetica Neue Condensed', 'Arial Narrow', system-ui, sans-serif"
+      font-weight="900"
+      font-size="34"
+      letter-spacing="1.2"
+      fill="#0A1F44"
+    >FARIA</text>
+  </g>
+
+  <!-- heavy hard horizontal rule -->
+  <rect x="0" y="40" width="108" height="2.5" fill="#0A1F44" />
+
+  <!-- INNOVATIONS letterspaced beneath the rule -->
+  <text
+    x="0"
+    y="52"
+    font-family="'Saira', 'Helvetica Neue', system-ui, sans-serif"
+    font-weight="600"
+    font-size="7.4"
+    letter-spacing="3.2"
+    fill="#0A1F44"
+  >INNOVATIONS</text>
+</svg>

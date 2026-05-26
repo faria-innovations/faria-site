@@ -1,0 +1,100 @@
+---
+// Parcentry supporting graphic — abstract county-parcel-viewer fragment.
+// Real document linework, not dashboard UI. Navy strokes on paper.
+// No glow. No fake charts. No invented metrics.
+---
+
+<figure class="parcel-map" aria-hidden="false">
+  <svg
+    viewBox="0 0 320 200"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Parcel map fragment — sample county block, with tracked change events"
+  >
+    <!-- outer frame -->
+    <rect x="0.5" y="0.5" width="319" height="199" fill="none" stroke="#0A1F44" stroke-width="1"/>
+
+    <!-- principal divisions (heavier) -->
+    <g stroke="#0A1F44" stroke-width="1.1" fill="none">
+      <line x1="0"   y1="80"  x2="320" y2="80"/>
+      <line x1="160" y1="0"   x2="160" y2="200"/>
+    </g>
+
+    <!-- parcel boundaries (hairline) -->
+    <g stroke="#0A1F44" stroke-width="0.45" fill="none">
+      <!-- NW block: regular grid -->
+      <line x1="40"  y1="0"   x2="40"  y2="80"/>
+      <line x1="80"  y1="0"   x2="80"  y2="80"/>
+      <line x1="120" y1="0"   x2="120" y2="80"/>
+      <line x1="0"   y1="40"  x2="160" y2="40"/>
+
+      <!-- NE block: two large lots split horizontally -->
+      <line x1="160" y1="38"  x2="320" y2="38"/>
+      <line x1="240" y1="0"   x2="240" y2="38"/>
+      <line x1="220" y1="38"  x2="220" y2="80"/>
+
+      <!-- SW block: dense narrow lots, two tiers -->
+      <line x1="32"  y1="80"  x2="32"  y2="200"/>
+      <line x1="64"  y1="80"  x2="64"  y2="200"/>
+      <line x1="96"  y1="80"  x2="96"  y2="200"/>
+      <line x1="128" y1="80"  x2="128" y2="200"/>
+      <line x1="0"   y1="135" x2="160" y2="135"/>
+
+      <!-- SE block: irregular -->
+      <line x1="200" y1="80"  x2="200" y2="200"/>
+      <line x1="260" y1="80"  x2="260" y2="200"/>
+      <line x1="160" y1="140" x2="320" y2="140"/>
+      <line x1="160" y1="172" x2="200" y2="172"/>
+    </g>
+
+    <!-- lot identifiers (tiny mono, charcoal) -->
+    <g font-family="'IBM Plex Mono', 'SF Mono', Menlo, monospace" font-size="4.6" fill="#6E737C" font-weight="500">
+      <text x="12"  y="12">012</text>
+      <text x="52"  y="12">013</text>
+      <text x="92"  y="12">014</text>
+      <text x="132" y="12">015</text>
+      <text x="12"  y="52">020</text>
+      <text x="52"  y="52">021</text>
+      <text x="92"  y="52">022</text>
+      <text x="132" y="52">023</text>
+      <text x="172" y="12">101</text>
+      <text x="248" y="12">102</text>
+      <text x="172" y="52">110</text>
+      <text x="228" y="52">111</text>
+      <text x="6"   y="92">204</text>
+      <text x="38"  y="92">205</text>
+      <text x="70"  y="92">206</text>
+      <text x="102" y="92">207</text>
+      <text x="134" y="92">208</text>
+      <text x="6"   y="148">220</text>
+      <text x="38"  y="148">221</text>
+      <text x="70"  y="148">222</text>
+      <text x="102" y="148">223</text>
+      <text x="134" y="148">224</text>
+      <text x="166" y="92">301</text>
+      <text x="206" y="92">302</text>
+      <text x="266" y="92">303</text>
+      <text x="166" y="152">310</text>
+      <text x="206" y="152">311</text>
+      <text x="266" y="152">312</text>
+      <text x="166" y="184">320</text>
+      <text x="206" y="184">321</text>
+      <text x="266" y="184">322</text>
+    </g>
+
+    <!-- tracked change events: small navy dots on a few parcels -->
+    <g fill="#0A1F44">
+      <circle cx="60"  cy="22"  r="2.2"/>
+      <circle cx="108" cy="60"  r="2.2"/>
+      <circle cx="248" cy="20"  r="2.2"/>
+      <circle cx="48"  cy="160" r="2.2"/>
+      <circle cx="116" cy="100" r="2.2"/>
+      <circle cx="228" cy="166" r="2.2"/>
+    </g>
+
+    <!-- footer caption strip -->
+    <g font-family="'IBM Plex Mono', monospace" font-size="5" fill="#0A1F44" font-weight="600" letter-spacing="0.6">
+      <text x="6" y="195">PARCEL FRAGMENT · COUNTY 04-723</text>
+    </g>
+  </svg>
+</figure>

@@ -1,10 +1,11 @@
 ---
-// Engineered Fi — registration-frame mark.
-// Small institutional seal. Used in footer and metadata contexts.
+// Engineered Fi — registration-frame mark. Path-based glyph so it
+// renders identically regardless of which fonts the visitor has.
+// Navy stroke + paper background context; used in footer signature.
 interface Props {
   size?: number;
 }
-const { size = 32 } = Astro.props;
+const { size = 36 } = Astro.props;
 ---
 
 <svg
@@ -16,18 +17,27 @@ const { size = 32 } = Astro.props;
   role="img"
   aria-label="Fi — Faria Innovations registry mark"
 >
-  <rect x="2" y="2" width="96" height="96" fill="none" stroke="#0A1F44" stroke-width="3"/>
-  <!-- registration crosses -->
-  <line x1="50" y1="2" x2="50" y2="10" stroke="#0A1F44" stroke-width="1.5"/>
-  <line x1="50" y1="90" x2="50" y2="98" stroke="#0A1F44" stroke-width="1.5"/>
-  <line x1="2" y1="50" x2="10" y2="50" stroke="#0A1F44" stroke-width="1.5"/>
-  <line x1="90" y1="50" x2="98" y2="50" stroke="#0A1F44" stroke-width="1.5"/>
-  <!-- Fi -->
-  <text x="50" y="62"
-    text-anchor="middle"
-    font-family="'Saira', system-ui, sans-serif"
-    font-size="32"
-    font-weight="800"
-    font-style="italic"
-    fill="#0A1F44">Fi</text>
+  <!-- registration frame -->
+  <rect x="2" y="2" width="96" height="96" fill="none" stroke="#0A1F44" stroke-width="3" />
+  <!-- corner registration crosses -->
+  <line x1="50" y1="2"  x2="50" y2="11" stroke="#0A1F44" stroke-width="2" />
+  <line x1="50" y1="89" x2="50" y2="98" stroke="#0A1F44" stroke-width="2" />
+  <line x1="2"  y1="50" x2="11" y2="50" stroke="#0A1F44" stroke-width="2" />
+  <line x1="89" y1="50" x2="98" y2="50" stroke="#0A1F44" stroke-width="2" />
+
+  <!-- "F" — drawn as stroked paths so it never depends on a webfont -->
+  <g fill="none" stroke="#0A1F44" stroke-width="6" stroke-linecap="square">
+    <!-- F stem -->
+    <line x1="30" y1="32" x2="30" y2="76" />
+    <!-- F top arm -->
+    <line x1="30" y1="32" x2="54" y2="32" />
+    <!-- F crossbar -->
+    <line x1="30" y1="52" x2="48" y2="52" />
+  </g>
+
+  <!-- "i" — stem + tittle -->
+  <g fill="#0A1F44">
+    <rect x="62" y="44" width="6" height="32" />
+    <rect x="62" y="32" width="6" height="6" />
+  </g>
 </svg>

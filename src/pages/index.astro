@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionMarker from '../components/SectionMarker.astro';
 import LabsCartographMap from '../components/LabsCartographMap.astro';
+import ParcelMap from '../components/ParcelMap.astro';
 import { ventures } from '../data/ventures';
 import { labs } from '../data/labs';
 import { site } from '../data/site';
@@ -23,35 +24,54 @@ import { site } from '../data/site';
 
   <section class="ventures-section" id="ventures" aria-labelledby="ventures-label">
     <div class="container dossier-grid">
-      <div class="dossier-numeral" aria-hidden="true">01</div>
-      <div class="dossier-entries">
-        <p class="section-label" id="ventures-label">
-          <span>INDEX OF VENTURES</span>
-          <span class="rule" aria-hidden="true"></span>
-        </p>
-        <ol class="venture-list" role="list">
-          {
-            ventures.map((v) => (
-              <li class="venture-row">
+      <aside class="dossier-opener">
+        <span class="dossier-numeral" aria-hidden="true">01</span>
+        <p class="dossier-opener-label" id="ventures-label">INDEX OF VENTURES</p>
+      </aside>
+
+      <ol class="venture-list" role="list">
+        {
+          ventures.map((v) => (
+            <li class={`venture-row venture-row--${v.atmosphere ?? 'standard'}`}>
+              <div class="venture-head">
                 <p class="venture-category">{v.category}</p>
                 <h3 class="venture-name">
                   <a href={v.entry}>{v.name}</a>
                 </h3>
                 <p class="venture-desc">{v.description}</p>
-                <p class="venture-signals">
-                  {v.meta.map((m) => <span>{m}</span>)}
-                </p>
-                <div class="venture-links">
-                  <a href={v.entry}>entry →</a>
-                  {v.external && (
-                    <a href={v.external.href} rel="noopener">{v.external.label}</a>
-                  )}
+              </div>
+
+              <ul class="venture-signals" role="list">
+                {v.signals.map((s) => (
+                  <li class="venture-signal">{s.label}</li>
+                ))}
+              </ul>
+
+              {v.graphic === 'parcel-map' && (
+                <div class="venture-graphic">
+                  <ParcelMap />
                 </div>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
+              )}
+
+              <dl class="venture-metadata">
+                {v.metadata.map((m) => (
+                  <div class="venture-metadata-row">
+                    <dt>{m.key}</dt>
+                    <dd>{m.value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div class="venture-links">
+                <a href={v.entry}>entry →</a>
+                {v.external && (
+                  <a href={v.external.href} rel="noopener">{v.external.label}</a>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </section>
 
