@@ -6,28 +6,45 @@
   <line x1="64"  y1="566" x2="1136" y2="566" stroke="#111111" stroke-width="2"/>
 
   <!-- ===================================================== -->
-  <!-- left: radar signal mark                               -->
+  <!-- left: radar signal mark — Fi acquired                 -->
   <!-- ===================================================== -->
-  <g transform="translate(64,120) scale(0.22)">
+  <g transform="translate(64,108) scale(0.22)">
     <g fill="none" stroke="#0A1F44">
       <circle cx="500" cy="500" r="120" stroke-width="14"/>
       <circle cx="500" cy="500" r="240" stroke-width="14"/>
       <circle cx="500" cy="500" r="360" stroke-width="14"/>
       <circle cx="500" cy="500" r="480" stroke-width="18"/>
-      <line x1="500" y1="500" x2="784" y2="161" stroke-width="22"/>
+      <!-- sweep re-aimed at the detected target -->
+      <line x1="500" y1="500" x2="796" y2="828" stroke-width="22"/>
       <line x1="500" y1="20"  x2="500" y2="68"  stroke-width="14"/>
       <line x1="500" y1="932" x2="500" y2="980" stroke-width="14"/>
       <line x1="20"  y1="500" x2="68"  y2="500" stroke-width="14"/>
       <line x1="932" y1="500" x2="980" y2="500" stroke-width="14"/>
-      <polyline points="640,720 640,672 692,672" stroke-width="14"/>
-      <polyline points="770,672 822,672 822,720" stroke-width="14"/>
-      <polyline points="640,794 640,842 692,842" stroke-width="14"/>
-      <polyline points="770,842 822,842 822,794" stroke-width="14"/>
     </g>
-    <circle cx="731" cy="712" r="14" fill="#0A1F44"/>
-    <text x="731" y="816" text-anchor="middle"
-      font-family="'Saira','Helvetica Neue',system-ui,sans-serif"
-      font-weight="900" font-style="italic" font-size="86" fill="#0A1F44">Fi</text>
+    <!-- Fi blip on ring 3 at polar 138° -->
+    <circle cx="741" cy="768" r="16" fill="#0A1F44"/>
+    <!-- acquisition lockbox -->
+    <g fill="none" stroke="#0A1F44" stroke-width="16">
+      <polyline points="681,762 681,712 731,712"/>
+      <polyline points="831,712 881,712 881,762"/>
+      <polyline points="681,862 681,912 731,912"/>
+      <polyline points="831,912 881,912 881,862"/>
+    </g>
+    <!-- Fi glyph inside lockbox — path-based -->
+    <g fill="none" stroke="#0A1F44" stroke-width="26" stroke-linecap="square">
+      <line x1="720" y1="740" x2="720" y2="880"/>
+      <line x1="720" y1="740" x2="796" y2="740"/>
+      <line x1="720" y1="798" x2="776" y2="798"/>
+    </g>
+    <g fill="#0A1F44">
+      <rect x="828" y="775" width="22" height="105"/>
+      <rect x="828" y="740" width="22" height="22"/>
+    </g>
+    <!-- annotation -->
+    <text x="681" y="688"
+      font-family="'IBM Plex Mono','SF Mono',Menlo,monospace"
+      font-weight="600" font-size="34" letter-spacing="3"
+      fill="#0A1F44">FI-01 ACQUIRED</text>
   </g>
 
   <!-- ===================================================== -->
