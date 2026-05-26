@@ -136,8 +136,8 @@ a:hover { color: var(--navy); }
 }
 .header-lockup:hover { color: var(--ink); }
 .header-lockup .radar-mark {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
 }
 .header-lockup .header-wordmark {
@@ -146,7 +146,7 @@ a:hover { color: var(--navy); }
 }
 @media (max-width: 480px) {
   .header-lockup .header-wordmark { width: 124px; }
-  .header-lockup .radar-mark { width: 40px; height: 40px; }
+  .header-lockup .radar-mark { width: 48px; height: 48px; }
 }
 
 .site-nav {

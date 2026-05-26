@@ -12,7 +12,7 @@ interface Props {
   /** Optional layout class. */
   class?: string;
 }
-const { size = 48, class: className = '' } = Astro.props;
+const { size = 60, class: className = '' } = Astro.props;
 ---
 
 <svg
@@ -44,14 +44,11 @@ const { size = 48, class: className = '' } = Astro.props;
     <line x1="932" y1="500" x2="980" y2="500" stroke-width="14" />
   </g>
 
-  <!-- Fi blip — detection point sitting on ring 3 at polar 138°.
-       (500 + 360·sin138°, 500 - 360·cos138°) = (741, 768).
-       Rendered as a small filled navy dot at the bracket's interior. -->
-  <circle cx="741" cy="768" r="16" fill="#0A1F44" />
-
   <!-- Acquisition lockbox — rectilinear corner brackets centered on
        polar 138° at radius 420 (between rings 3 and 4). Size: 200×200
-       viewBox units (20% of SVG width). -->
+       viewBox units. The Fi glyph inside is now the entire detected
+       signal — a standalone blip dot would only crowd it at masthead
+       scale. -->
   <g fill="none" stroke="#0A1F44" stroke-width="16">
     <polyline points="681,762 681,712 731,712" />
     <polyline points="831,712 881,712 881,762" />
@@ -59,22 +56,22 @@ const { size = 48, class: className = '' } = Astro.props;
     <polyline points="831,912 881,912 881,862" />
   </g>
 
-  <!-- Fi glyph inside the lockbox — path-based, heavy strokes so it
-       reads at masthead scale. Same engineered construction as the
-       footer / favicon Fi mark, tuned for radar legibility. -->
-  <g fill="none" stroke="#0A1F44" stroke-width="26" stroke-linecap="square">
+  <!-- Fi glyph inside the lockbox — fills ~90% of the box vertically
+       so the letters survive masthead scale. Same engineered F + i as
+       the footer / favicon, with heavier strokes for radar legibility. -->
+  <g fill="none" stroke="#0A1F44" stroke-width="38" stroke-linecap="square">
     <!-- F: stem -->
-    <line x1="720" y1="740" x2="720" y2="880" />
+    <line x1="720" y1="739" x2="720" y2="885" />
     <!-- F: top arm -->
-    <line x1="720" y1="740" x2="796" y2="740" />
+    <line x1="720" y1="739" x2="798" y2="739" />
     <!-- F: crossbar -->
-    <line x1="720" y1="798" x2="776" y2="798" />
+    <line x1="720" y1="805" x2="778" y2="805" />
   </g>
   <g fill="#0A1F44">
     <!-- i: stem -->
-    <rect x="828" y="775" width="22" height="105" />
+    <rect x="836" y="790" width="26" height="95" />
     <!-- i: tittle -->
-    <rect x="828" y="740" width="22" height="22" />
+    <rect x="836" y="735" width="26" height="26" />
   </g>
 
   <!-- Tiny mono annotation: FI-01 ACQUIRED -->
