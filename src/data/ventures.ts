@@ -15,16 +15,18 @@ export interface Venture {
   category: string;
   /** Venture display name (rendered in the engineered display face). */
   name: string;
-  /** One-line description in body voice. */
+  /** One-line description in body voice. Kept short. */
   description: string;
-  /** Internal detail page route. */
+  /** Internal detail page route or anchor. */
   entry: string;
   /** Optional external link, e.g. parcentry.com */
   external?: { href: string; label: string };
-  /** Real operational signals shown directly under the description. */
-  signals: VentureSignal[];
-  /** Bottom-row dossier metadata. Mono key/value pairs. */
-  metadata: VentureMetadataField[];
+  /** Current development stage shown in CURRENT VENTURES. */
+  stage: string;
+  /** Optional signals (used by older dossier renderings). */
+  signals?: VentureSignal[];
+  /** Optional metadata rows (used by older dossier renderings). */
+  metadata?: VentureMetadataField[];
   /** Optional supporting graphic component name to render in the entry. */
   graphic?: 'parcel-map';
   /** Optional modifier flag that tunes the row's typographic atmosphere. */
@@ -35,39 +37,26 @@ export const ventures: Venture[] = [
   {
     category: 'COMMERCIAL REAL ESTATE SOFTWARE',
     name: 'Parcentry',
-    description:
-      'Tracks public-record changes across commercial properties.',
+    description: 'Commercial real estate intelligence.',
     entry: '/parcentry',
     external: { href: 'https://parcentry.com', label: 'parcentry.com →' },
-    signals: [
-      { label: '281K PARCELS INDEXED' },
-      { label: 'NIGHTLY SCANS' },
-      { label: 'PUBLIC RECORDS' },
-    ],
-    metadata: [
-      { key: 'STATUS',      value: 'OPERATIONAL' },
-      { key: 'SCOPE',       value: 'UNITED STATES' },
-      { key: 'DATA SOURCE', value: 'COUNTY RECORDS' },
-    ],
-    graphic: 'parcel-map',
+    stage: 'ACTIVE PRODUCT',
     atmosphere: 'standard',
   },
   {
-    category: 'ANIMATED SERIES',
+    category: 'ORIGINAL ANIMATED IP',
     name: 'Flight Risk',
-    description:
-      'An ongoing world about leaving. Animated, written, scored, never finished.',
+    description: 'Original animated IP.',
     entry: '/flight-risk',
-    signals: [
-      { label: 'WORLD: PLANET TEROVA' },
-      { label: 'FORMAT: ANIMATED SERIES' },
-      { label: 'IN DEVELOPMENT' },
-    ],
-    metadata: [
-      { key: 'MEDIUM',  value: 'ANIMATION / PROSE / SCORE' },
-      { key: 'STATE',   value: 'OPEN-ENDED' },
-      { key: 'ORIGIN',  value: 'INTERNAL' },
-    ],
+    stage: 'IN DEVELOPMENT',
     atmosphere: 'cinematic',
+  },
+  {
+    category: 'EXPERIMENTS · WORKING FIELD',
+    name: 'Labs',
+    description: 'Early-stage experiments and prototypes.',
+    entry: '#labs',
+    stage: 'WORKING FIELD',
+    atmosphere: 'standard',
   },
 ];

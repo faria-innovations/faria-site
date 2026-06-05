@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionMarker from '../components/SectionMarker.astro';
 import LabsCartographMap from '../components/LabsCartographMap.astro';
-import ParcelMap from '../components/ParcelMap.astro';
 import { ventures } from '../data/ventures';
 import { labs } from '../data/labs';
 import { site } from '../data/site';
@@ -10,8 +9,25 @@ import { site } from '../data/site';
 
 <BaseLayout
   title="Faria Innovations — Venture Index"
-  description="Faria Innovations indexes Parcentry, Flight Risk, Labs, and future work by Felipe Alves Faria."
+  description="Faria Innovations builds software, media, and experimental ventures from one founder-led operating system. Current: Parcentry, Flight Risk, Labs."
 >
+  <section class="faria-thesis" id="faria-thesis" aria-labelledby="faria-thesis-label">
+    <div class="container">
+      <p class="cred-label" id="faria-thesis-label">
+        <span class="accent-tick" aria-hidden="true">▍</span>
+        <span>FARIA INNOVATIONS</span>
+      </p>
+      <div class="faria-thesis-body">
+        <p>
+          Faria Innovations builds software, media, and experimental ventures from one founder-led operating system.
+        </p>
+        <p>
+          Current ventures span commercial real estate intelligence, original entertainment IP, and early-stage experiments.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="registry-meta">
     <dl class="container registry-fields">
       <div class="registry-field"><dt>FILE</dt><dd>{site.legalName}</dd></div>
@@ -70,22 +86,10 @@ import { site } from '../data/site';
         </p>
         <h3 class="rep-alert-title">OWNERSHIP TRANSFER DETECTED</h3>
         <dl class="rep-alert-fields">
-          <div class="rep-alert-row">
-            <dt>Property</dt>
-            <dd>Example Commercial Property</dd>
-          </div>
-          <div class="rep-alert-row">
-            <dt>Market</dt>
-            <dd>Nashville, TN</dd>
-          </div>
-          <div class="rep-alert-row">
-            <dt>Recorded</dt>
-            <dd>May 12, 2026</dd>
-          </div>
-          <div class="rep-alert-row">
-            <dt>Source</dt>
-            <dd>County Register of Deeds</dd>
-          </div>
+          <div class="rep-alert-row"><dt>Property</dt><dd>Example Commercial Property</dd></div>
+          <div class="rep-alert-row"><dt>Market</dt><dd>Nashville, TN</dd></div>
+          <div class="rep-alert-row"><dt>Recorded</dt><dd>May 12, 2026</dd></div>
+          <div class="rep-alert-row"><dt>Source</dt><dd>County Register of Deeds</dd></div>
         </dl>
         <p class="rep-alert-caption">
           Representative output format. No customer data shown.
@@ -131,7 +135,7 @@ import { site } from '../data/site';
     <div class="container dossier-grid">
       <aside class="dossier-opener">
         <span class="dossier-numeral" aria-hidden="true">01</span>
-        <p class="dossier-opener-label" id="ventures-label">INDEX OF VENTURES</p>
+        <p class="dossier-opener-label" id="ventures-label">CURRENT VENTURES</p>
       </aside>
 
       <ol class="venture-list" role="list">
@@ -146,29 +150,17 @@ import { site } from '../data/site';
                 <p class="venture-desc">{v.description}</p>
               </div>
 
-              <ul class="venture-signals" role="list">
-                {v.signals.map((s) => (
-                  <li class="venture-signal">{s.label}</li>
-                ))}
-              </ul>
-
-              {v.graphic === 'parcel-map' && (
-                <div class="venture-graphic">
-                  <ParcelMap />
-                </div>
-              )}
-
-              <dl class="venture-metadata">
-                {v.metadata.map((m) => (
-                  <div class="venture-metadata-row">
-                    <dt>{m.key}</dt>
-                    <dd>{m.value}</dd>
-                  </div>
-                ))}
+              <dl class="venture-stage">
+                <dt>STAGE</dt>
+                <dd>{v.stage}</dd>
               </dl>
 
               <div class="venture-links">
-                <a href={v.entry}>entry →</a>
+                {v.entry.startsWith('#') ? (
+                  <a href={v.entry}>working field ↓</a>
+                ) : (
+                  <a href={v.entry}>entry →</a>
+                )}
                 {v.external && (
                   <a href={v.external.href} rel="noopener">{v.external.label}</a>
                 )}
@@ -177,6 +169,42 @@ import { site } from '../data/site';
           ))
         }
       </ol>
+    </div>
+  </section>
+
+  <section class="cred-section" id="why-portfolio" aria-labelledby="cred-why-portfolio-label">
+    <div class="container">
+      <p class="cred-label" id="cred-why-portfolio-label">
+        <span class="accent-tick" aria-hidden="true">▍</span>
+        <span>WHY THIS PORTFOLIO</span>
+      </p>
+      <div class="cred-why">
+        <p>
+          Faria builds ventures that combine systems, media, and experimentation.
+        </p>
+        <p>
+          Some generate revenue. Some generate intellectual property. Some explore future opportunities.
+        </p>
+        <p>
+          The objective is not a single product. The objective is a repeatable venture-building process.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cred-section" id="operating-proof" aria-labelledby="cred-op-proof-label">
+    <div class="container">
+      <p class="cred-label" id="cred-op-proof-label">
+        <span class="accent-tick" aria-hidden="true">▍</span>
+        <span>OPERATING PROOF</span>
+      </p>
+      <ul class="cred-list cred-list--2col" role="list">
+        <li>281,476 parcels indexed</li>
+        <li>Nightly public-record scans</li>
+        <li>Live commercial software product</li>
+        <li>Original animated IP in development</li>
+        <li>Active deployment and operating infrastructure</li>
+      </ul>
     </div>
   </section>
 
@@ -220,6 +248,18 @@ import { site } from '../data/site';
         <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
         <p><a href={site.phoneHref}>{site.phone}</a></p>
       </div>
+    </div>
+  </section>
+
+  <section class="invest-line" id="invest" aria-labelledby="invest-label">
+    <div class="container">
+      <p class="cred-label" id="invest-label">
+        <span class="accent-tick" aria-hidden="true">▍</span>
+        <span>INVESTMENT / PARTNERSHIP INQUIRIES</span>
+      </p>
+      <p class="invest-email">
+        <a href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20%E2%80%94%20Partnership%20Inquiry">felipe@fariainnovations.com</a>
+      </p>
     </div>
   </section>
 </BaseLayout>
