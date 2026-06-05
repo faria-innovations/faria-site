@@ -1011,3 +1011,164 @@ figcaption.parcel-map-caption strong {
   display: block;
   margin-bottom: 0.2rem;
 }
+
+/* ============================================================ */
+/* v3.2 — credibility pass                                      */
+/* current operations / representative alert / who / why        */
+/* ============================================================ */
+
+/* hero — single-column now (operational proof has moved to a
+   dedicated "Current Operations" strip below) */
+.parcentry-hero .container > * {
+  max-width: 60ch;
+}
+.parcentry-hero-ctas {
+  max-width: none;
+}
+
+.cred-section {
+  padding-block: clamp(2.75rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cred-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.cred-label > span:not(.accent-tick) {
+  color: var(--ink);
+}
+
+/* Lists — operations + who */
+.cred-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+@media (min-width: 760px) {
+  .cred-list--2col { grid-template-columns: 1fr 1fr; }
+}
+.cred-list li {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+@media (min-width: 760px) {
+  .cred-list--2col li:nth-child(odd) {
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--hairline);
+  }
+  .cred-list--2col li:nth-child(even) {
+    padding-left: 1.5rem;
+  }
+}
+
+/* Representative Alert — looks like a real deliverable */
+.rep-alert {
+  border: 2px solid var(--navy);
+  background: var(--paper);
+  padding: 1.5rem 1.75rem 1.5rem;
+  max-width: 640px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.rep-alert-header {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--hairline);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.rep-alert-header .accent-tick { color: var(--accent); }
+.rep-alert-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--navy);
+}
+.rep-alert-fields {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+.rep-alert-row {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1rem;
+  padding-block: 0.55rem;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+.rep-alert-row dt {
+  color: var(--gray);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0;
+}
+.rep-alert-row dd {
+  margin: 0;
+  color: var(--ink);
+}
+.rep-alert-caption {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin: 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--hairline);
+  font-weight: 500;
+}
+
+/* Why block — short paragraph */
+.cred-why {
+  max-width: 60ch;
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.25rem;
+}
+.cred-why p {
+  font-family: var(--font-text);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 0.85rem;
+}
+.cred-why p:last-child { margin-bottom: 0; }
