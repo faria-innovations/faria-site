@@ -29,7 +29,7 @@ const { size = 56, class: className = '' } = Astro.props;
   role="img"
   aria-label="Faria Innovations — Fi detected on radar"
 >
-  <g fill="none" stroke="#0A1F44">
+  <g fill="none" stroke="#F0EDE4">
     <!-- 4 concentric rings -->
     <circle cx="500" cy="500" r="120" stroke-width="14" />
     <circle cx="500" cy="500" r="240" stroke-width="14" />
@@ -51,11 +51,11 @@ const { size = 56, class: className = '' } = Astro.props;
 
   <!-- Fi blip: small navy dot on ring 3 at polar 138°.
        (500 + 360·sin138°, 500 - 360·cos138°) = (741, 768) -->
-  <circle cx="741" cy="768" r="18" fill="#0A1F44" />
+  <circle cx="741" cy="768" r="18" fill="#F0EDE4" />
 
   <!-- Tight rectilinear lockbox around the blip — corner brackets only,
        ≈ 70 viewBox units across, centered on (741, 768). -->
-  <g fill="none" stroke="#0A1F44" stroke-width="12">
+  <g fill="none" stroke="#F0EDE4" stroke-width="12">
     <polyline points="706,755 706,733 728,733" />
     <polyline points="754,733 776,733 776,755" />
     <polyline points="706,781 706,803 728,803" />
@@ -75,6 +75,6 @@ const { size = 56, class: className = '' } = Astro.props;
     font-style="italic"
     font-size="95"
     letter-spacing="-1"
-    fill="#0A1F44"
+    fill="#F0EDE4"
   >Fi</text>
 </svg>

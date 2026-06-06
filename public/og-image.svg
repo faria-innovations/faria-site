@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#F0EDE4"/>
+  <rect width="1200" height="630" fill="#0A1F44"/>
 
   <!-- top + bottom structural rules -->
-  <line x1="64"  y1="64"  x2="1136" y2="64"  stroke="#111111" stroke-width="2"/>
-  <line x1="64"  y1="566" x2="1136" y2="566" stroke="#111111" stroke-width="2"/>
+  <line x1="64"  y1="64"  x2="1136" y2="64"  stroke="#F0EDE4" stroke-width="2"/>
+  <line x1="64"  y1="566" x2="1136" y2="566" stroke="#F0EDE4" stroke-width="2"/>
 
   <!-- ===================================================== -->
   <!-- left: radar signal mark — Fi acquired                 -->
   <!-- ===================================================== -->
   <g transform="translate(64,108) scale(0.22)">
-    <g fill="none" stroke="#0A1F44">
+    <g fill="none" stroke="#F0EDE4">
       <circle cx="500" cy="500" r="120" stroke-width="14"/>
       <circle cx="500" cy="500" r="240" stroke-width="14"/>
       <circle cx="500" cy="500" r="360" stroke-width="14"/>
@@ -22,9 +22,9 @@
       <line x1="932" y1="500" x2="980" y2="500" stroke-width="14"/>
     </g>
     <!-- Fi blip dot on ring 3 at polar 138° -->
-    <circle cx="741" cy="768" r="18" fill="#0A1F44"/>
+    <circle cx="741" cy="768" r="18" fill="#F0EDE4"/>
     <!-- tight lockbox around the blip -->
-    <g fill="none" stroke="#0A1F44" stroke-width="12">
+    <g fill="none" stroke="#F0EDE4" stroke-width="12">
       <polyline points="706,755 706,733 728,733"/>
       <polyline points="754,733 776,733 776,755"/>
       <polyline points="706,781 706,803 728,803"/>
@@ -34,7 +34,7 @@
     <text x="792" y="790"
       font-family="'Saira','Helvetica Neue',system-ui,sans-serif"
       font-weight="900" font-style="italic" font-size="95"
-      letter-spacing="-1" fill="#0A1F44">Fi</text>
+      letter-spacing="-1" fill="#F0EDE4">Fi</text>
   </g>
 
   <!-- ===================================================== -->
@@ -45,13 +45,13 @@
       <text x="0" y="120"
         font-family="'Saira','Helvetica Neue Condensed','Arial Narrow',system-ui,sans-serif"
         font-weight="900" font-size="140" letter-spacing="6"
-        fill="#0A1F44">FARIA</text>
+        fill="#F0EDE4">FARIA</text>
     </g>
-    <rect x="0" y="140" width="480" height="10" fill="#0A1F44"/>
+    <rect x="0" y="140" width="480" height="10" fill="#F0EDE4"/>
     <text x="0" y="190"
       font-family="'Saira','Helvetica Neue',system-ui,sans-serif"
       font-weight="600" font-size="28" letter-spacing="14"
-      fill="#0A1F44">INNOVATIONS</text>
+      fill="#F0EDE4">INNOVATIONS</text>
   </g>
 
   <!-- ===================================================== -->
@@ -60,60 +60,60 @@
   <text x="64" y="310"
     font-family="'IBM Plex Mono','SF Mono',Menlo,monospace"
     font-size="16" font-weight="600" letter-spacing="3"
-    fill="#B4541D">COMMERCIAL REAL ESTATE SOFTWARE · VENTURE 01</text>
+    fill="#C76833">COMMERCIAL REAL ESTATE SOFTWARE · VENTURE 01</text>
 
   <text x="64" y="400"
     font-family="'Saira','Helvetica Neue Condensed','Arial Narrow',system-ui,sans-serif"
     font-size="100" font-weight="900" font-style="italic" letter-spacing="6"
-    fill="#0A1F44">PARCENTRY</text>
+    fill="#F0EDE4">PARCENTRY</text>
 
   <text x="64" y="470"
     font-family="'Helvetica Neue','Helvetica','Arial',sans-serif"
     font-size="26" font-weight="500"
-    fill="#111111">Tracks public-record changes across</text>
+    fill="#F0EDE4">Tracks public-record changes across</text>
   <text x="64" y="504"
     font-family="'Helvetica Neue','Helvetica','Arial',sans-serif"
     font-size="26" font-weight="500"
-    fill="#111111">commercial properties.</text>
+    fill="#F0EDE4">commercial properties.</text>
 
   <!-- ===================================================== -->
   <!-- registry block on the right                           -->
   <!-- ===================================================== -->
   <g font-family="'IBM Plex Mono','SF Mono',Menlo,monospace" font-size="14" letter-spacing="2">
-    <line x1="600" y1="320" x2="1136" y2="320" stroke="#B8BCC3" stroke-width="1"/>
+    <line x1="600" y1="320" x2="1136" y2="320" stroke="#3A4868" stroke-width="1"/>
 
-    <text x="600" y="350" font-weight="600" fill="#111111">FILE</text>
-    <text x="780" y="350" fill="#6E737C">FARIA INNOVATIONS LLC</text>
-    <line x1="600" y1="370" x2="1136" y2="370" stroke="#B8BCC3" stroke-width="1"/>
+    <text x="600" y="350" font-weight="600" fill="#F0EDE4">FILE</text>
+    <text x="780" y="350" fill="#9CA0AB">FARIA INNOVATIONS LLC</text>
+    <line x1="600" y1="370" x2="1136" y2="370" stroke="#3A4868" stroke-width="1"/>
 
-    <text x="600" y="400" font-weight="600" fill="#111111">TYPE</text>
-    <text x="780" y="400" fill="#6E737C">PARENT COMPANY / VENTURE INDEX</text>
-    <line x1="600" y1="420" x2="1136" y2="420" stroke="#B8BCC3" stroke-width="1"/>
+    <text x="600" y="400" font-weight="600" fill="#F0EDE4">TYPE</text>
+    <text x="780" y="400" fill="#9CA0AB">PARENT COMPANY / VENTURE INDEX</text>
+    <line x1="600" y1="420" x2="1136" y2="420" stroke="#3A4868" stroke-width="1"/>
 
-    <text x="600" y="450" font-weight="600" fill="#111111">INDEX</text>
-    <text x="780" y="450" fill="#6E737C">PARCENTRY / FLIGHT RISK / LABS</text>
-    <line x1="600" y1="470" x2="1136" y2="470" stroke="#B8BCC3" stroke-width="1"/>
+    <text x="600" y="450" font-weight="600" fill="#F0EDE4">INDEX</text>
+    <text x="780" y="450" fill="#9CA0AB">PARCENTRY / FLIGHT RISK / LABS</text>
+    <line x1="600" y1="470" x2="1136" y2="470" stroke="#3A4868" stroke-width="1"/>
 
-    <text x="600" y="500" font-weight="600" fill="#111111">LOCATION</text>
-    <text x="780" y="500" fill="#6E737C">BELTSVILLE, MARYLAND</text>
-    <line x1="600" y1="520" x2="1136" y2="520" stroke="#B8BCC3" stroke-width="1"/>
+    <text x="600" y="500" font-weight="600" fill="#F0EDE4">LOCATION</text>
+    <text x="780" y="500" fill="#9CA0AB">BELTSVILLE, MARYLAND</text>
+    <line x1="600" y1="520" x2="1136" y2="520" stroke="#3A4868" stroke-width="1"/>
   </g>
 
   <!-- ===================================================== -->
   <!-- engineered Fi registration mark — bottom right         -->
   <!-- ===================================================== -->
   <g transform="translate(1080,576)">
-    <rect x="0"  y="0"  width="40" height="40" fill="none" stroke="#0A1F44" stroke-width="2"/>
-    <line x1="20" y1="0"  x2="20" y2="6"  stroke="#0A1F44" stroke-width="1.5"/>
-    <line x1="20" y1="34" x2="20" y2="40" stroke="#0A1F44" stroke-width="1.5"/>
-    <line x1="0"  y1="20" x2="6"  y2="20" stroke="#0A1F44" stroke-width="1.5"/>
-    <line x1="34" y1="20" x2="40" y2="20" stroke="#0A1F44" stroke-width="1.5"/>
-    <g fill="none" stroke="#0A1F44" stroke-width="2.5" stroke-linecap="square">
+    <rect x="0"  y="0"  width="40" height="40" fill="none" stroke="#F0EDE4" stroke-width="2"/>
+    <line x1="20" y1="0"  x2="20" y2="6"  stroke="#F0EDE4" stroke-width="1.5"/>
+    <line x1="20" y1="34" x2="20" y2="40" stroke="#F0EDE4" stroke-width="1.5"/>
+    <line x1="0"  y1="20" x2="6"  y2="20" stroke="#F0EDE4" stroke-width="1.5"/>
+    <line x1="34" y1="20" x2="40" y2="20" stroke="#F0EDE4" stroke-width="1.5"/>
+    <g fill="none" stroke="#F0EDE4" stroke-width="2.5" stroke-linecap="square">
       <line x1="12" y1="12" x2="12" y2="30"/>
       <line x1="12" y1="12" x2="22" y2="12"/>
       <line x1="12" y1="20" x2="20" y2="20"/>
     </g>
-    <g fill="#0A1F44">
+    <g fill="#F0EDE4">
       <rect x="26" y="17" width="3" height="13"/>
       <rect x="26" y="12" width="3" height="3"/>
     </g>

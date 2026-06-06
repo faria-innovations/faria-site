@@ -16,16 +16,18 @@
 @import '@fontsource/ibm-plex-mono/600.css';
 
 :root {
-  /* palette — locked. */
-  --navy:     #0A1F44;
-  --ink:      #111111;
-  --paper:    #F0EDE4;
-  --gray:     #6E737C;
-  --hairline: #B8BCC3;
-  /* Burnt Sienna — sole accent. Reserved for CTAs, tiny signal marks,
-     and selected rule highlights. Never on the wordmark, never as a
-     large surface, never on every link. */
-  --accent:   #B4541D;
+  /* palette — dark inversion. Brand navy is now the field; cream
+     (formerly paper) carries every mark, line, and letterform. */
+  --paper:    #0A1F44;   /* deep brand navy — the field. */
+  --ink:      #F0EDE4;   /* warm cream — every mark and letterform. */
+  --navy:     #F0EDE4;   /* mark-color token. Was the navy ink; now its inverse. */
+  --gray:     #9CA0AB;   /* readable mid-light gray for secondary text on navy. */
+  --hairline: rgba(240, 237, 228, 0.22); /* faint cream dividers. */
+  /* Burnt Sienna — sole accent. Slightly warmer/brighter for legibility
+     on the dark navy field. Reserved for CTAs, tiny signal marks, and
+     selected rule highlights. Never on the wordmark, never as a large
+     surface, never on every link. */
+  --accent:   #C76833;
 
   /* derived */
   --rule:     var(--ink);
@@ -45,7 +47,7 @@
   --margin: 64px;
   --measure: 62ch;
 
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 @media (max-width: 760px) {
@@ -714,7 +716,7 @@ details.lab-row[open] .lab-prefix { color: var(--ink); }
 .note-body code {
   font-family: var(--font-mono);
   font-size: 0.88em;
-  background: rgba(10, 31, 68, 0.05);
+  background: rgba(240, 237, 228, 0.08);
   padding: 0.1em 0.3em;
 }
 .note-body hr {
