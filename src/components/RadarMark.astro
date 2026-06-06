@@ -62,17 +62,20 @@ const { size = 56, class: className = '' } = Astro.props;
     <polyline points="754,803 776,803 776,781" />
   </g>
 
-  <!-- "Fi" label, immediately to the right of the lockbox. Heavy italic
-       Saira, navy. At masthead scale this reads as a small institutional
-       cue; at OG / presentation scale it reads clearly as Fi. -->
+  <!-- "Fi" label, centered just below the lockbox in the safe band
+       y > ring-3 max (860) and outside ring-4's right edge at that band.
+       Sitting here keeps the letterforms clear of every ring stroke at
+       masthead scale, while staying visually associated with the
+       lockbox above it. -->
   <text
-    x="800"
-    y="814"
+    x="720"
+    y="890"
+    text-anchor="middle"
     font-family="'Saira', 'Helvetica Neue', system-ui, sans-serif"
     font-weight="900"
     font-style="italic"
-    font-size="146"
-    letter-spacing="-2"
+    font-size="100"
+    letter-spacing="-1"
     fill="#0A1F44"
   >Fi</text>
 </svg>

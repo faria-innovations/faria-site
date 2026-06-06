@@ -30,11 +30,11 @@
       <polyline points="706,781 706,803 728,803"/>
       <polyline points="754,803 776,803 776,781"/>
     </g>
-    <!-- Fi label to the right of the lockbox -->
-    <text x="800" y="814"
+    <!-- Fi label centered below the lockbox (rings don't cross letters) -->
+    <text x="720" y="890" text-anchor="middle"
       font-family="'Saira','Helvetica Neue',system-ui,sans-serif"
-      font-weight="900" font-style="italic" font-size="146"
-      letter-spacing="-2" fill="#0A1F44">Fi</text>
+      font-weight="900" font-style="italic" font-size="100"
+      letter-spacing="-1" fill="#0A1F44">Fi</text>
   </g>
 
   <!-- ===================================================== -->
