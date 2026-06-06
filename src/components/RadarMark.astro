@@ -134,8 +134,9 @@ const { size = 56, class: className = '' } = Astro.props;
   <circle cx="741" cy="768" r="22" fill="#F0EDE4"
     filter="url(#fi-glow)" opacity="0.55" />
 
-  <!-- Fi blip: filled dot + two staggered ping rings (the echo). -->
-  <circle cx="741" cy="768" r="18" fill="#F0EDE4" />
+  <!-- Fi blip: filled dot (with its own slow blink) + two staggered
+       ping rings (the echo). -->
+  <circle class="fi-dot" cx="741" cy="768" r="18" fill="#F0EDE4" />
   <circle class="radar-pulse" cx="741" cy="768" r="18"
     fill="none" stroke="#F0EDE4" stroke-width="3" />
   <circle class="radar-pulse radar-pulse--echo" cx="741" cy="768" r="18"
@@ -284,6 +285,18 @@ const { size = 56, class: className = '' } = Astro.props;
     45%, 55% { fill-opacity: 0.12; }
   }
 
+  /* Fi dot itself blinks — a clearly visible 1.3s pulse so the
+     acquired contact reads as a live, continuously-confirmed signal.
+     Drops to 0.45 at the trough so the dimming is unambiguous. */
+  .radar-mark .fi-dot {
+    animation: fi-dot-blink 1.3s ease-in-out infinite;
+    will-change: fill-opacity;
+  }
+  @keyframes fi-dot-blink {
+    0%, 100% { fill-opacity: 1;    }
+    50%      { fill-opacity: 0.45; }
+  }
+
   /* Respect reduced motion: stop every animation and hide every
      animated element. The static composition is identical to
      favicon/OG. */
@@ -292,6 +305,7 @@ const { size = 56, class: className = '' } = Astro.props;
     .radar-mark .radar-pulse,
     .radar-mark .radar-ping,
     .radar-mark .fi-acquire,
+    .radar-mark .fi-dot,
     .radar-mark .radar-blip-secondary {
       animation: none;
     }

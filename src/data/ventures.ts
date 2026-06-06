@@ -72,6 +72,7 @@ export const ventures: Venture[] = [
     description: 'Original animated IP.',
     expanded: 'An ongoing animated world in development.',
     entry: '/flight-risk',
+    external: { href: 'https://flightriskshow.com', label: 'flightriskshow.com →' },
     stage: 'IN DEVELOPMENT',
     cta: {
       label: 'View Entry',
