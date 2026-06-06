@@ -62,19 +62,18 @@ const { size = 56, class: className = '' } = Astro.props;
     <polyline points="754,803 776,803 776,781" />
   </g>
 
-  <!-- "Fi" label, centered just below the lockbox in the safe band
-       y > ring-3 max (860) and outside ring-4's right edge at that band.
-       Sitting here keeps the letterforms clear of every ring stroke at
-       masthead scale, while staying visually associated with the
-       lockbox above it. -->
+  <!-- "Fi" label, sat to the right of the lockbox in the safe corridor:
+       ring-3's right edge has fallen left of x≈785 by y=720, and
+       ring-4's right edge stays right of x≈883 down to y=790. The Fi
+       letters span ~792–869 horizontal × ~720–790 vertical and clear
+       every ring stroke. -->
   <text
-    x="720"
-    y="890"
-    text-anchor="middle"
+    x="792"
+    y="790"
     font-family="'Saira', 'Helvetica Neue', system-ui, sans-serif"
     font-weight="900"
     font-style="italic"
-    font-size="100"
+    font-size="95"
     letter-spacing="-1"
     fill="#0A1F44"
   >Fi</text>
