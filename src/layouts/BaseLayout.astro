@@ -40,6 +40,13 @@ const organizationLd = {
   email: site.email,
   telephone: site.phoneE164,
 };
+
+// Build audit stamp — Git SHA + build time, kept in head comment and
+// <meta> only. NOT shown in visible UI per design discipline.
+const gitSha = (import.meta.env.VERCEL_GIT_COMMIT_SHA ?? '').slice(0, 12);
+const buildTime = import.meta.env.VERCEL_GIT_COMMIT_REF
+  ? new Date().toISOString()
+  : '';
 ---
 
 <!doctype html>
@@ -47,6 +54,9 @@ const organizationLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {gitSha && <meta name="build-sha" content={gitSha} />}
+    {buildTime && <meta name="build-time" content={buildTime} />}
+    <Fragment set:html={`<!-- build ${gitSha || 'local'} ${buildTime || 'dev'} -->`} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.founder} />

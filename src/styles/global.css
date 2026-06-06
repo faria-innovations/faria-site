@@ -80,6 +80,25 @@ body {
   line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle film-grain overlay. Procedural noise via inline SVG so there's
+   no extra HTTP request and no asset to ship. Fixed-position, ignores
+   pointer events. Opacity is intentionally low — felt, not seen. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.94  0 0 0 0 0.93  0 0 0 0 0.89  0 0 0 1 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Grain is static, no motion concern. Keep it. */
 }
 
 a {
@@ -519,9 +538,7 @@ details.lab-row[open] .lab-prefix { color: var(--ink); }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gray);
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  margin: 0;
 }
 .footer-fi {
   width: 32px;
@@ -1289,6 +1306,27 @@ figcaption.parcel-map-caption strong {
   flex-wrap: wrap;
   gap: 1rem 1.5rem;
   align-items: center;
+}
+
+/* Restrained hero stagger on load. 8px rise, 80ms stagger, half-second
+   per element. Tight enough that it reads as composition, not animation.
+   Guarded by prefers-reduced-motion: no-preference so it never plays
+   for users who have asked the OS to suppress motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .faria-hero .cred-label,
+  .faria-hero-title,
+  .faria-hero-sub,
+  .faria-hero-ctas {
+    animation: hero-rise 480ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  .faria-hero .cred-label  { animation-delay: 0ms;   }
+  .faria-hero-title        { animation-delay: 80ms;  }
+  .faria-hero-sub          { animation-delay: 160ms; }
+  .faria-hero-ctas         { animation-delay: 240ms; }
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
 }
 
 /* 4-cell proof row strip */
