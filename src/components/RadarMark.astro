@@ -1,9 +1,13 @@
 ---
 // RadarSignalMark — institutional mark per V3 Identity System Manual.
-// Phase 1 motion: the sweep rotates clockwise with a phosphor comet
-// tail; the Fi blip pulses on a slow ping cycle. prefers-reduced-motion
-// disables both animations and collapses the tail to a single leading
-// stroke, leaving the static composition identical to the original.
+//
+// Motion (cumulative across passes):
+//   • Sweep rotates clockwise on a 7s linear loop.
+//   • Fi blip emits two staggered ping rings (the second echoes the first).
+//   • Subtle gaussian glow under the Fi dot, so it reads as an active
+//     signal rather than a static mark.
+//   • prefers-reduced-motion stops every animation and hides the pings;
+//     the static composition matches the favicon / OG render.
 
 interface Props {
   /** Rendered pixel size. */
@@ -81,18 +85,24 @@ const { size = 56, class: className = '' } = Astro.props;
     <text x="175" y="825">4</text>
   </g>
 
-  <!-- Rotating sweep with phosphor comet tail.
-       Each line is a polar ray from (500,500) at a successively smaller
-       angle behind the leading edge (40° CW from north). Stroke-width
-       and opacity decay back through the tail so the whole group reads
-       as a single fading beam when the group rotates. -->
+  <!-- Antenna mark at the radar centre — small filled dot plus four
+       micro-ticks so the origin reads as an engineered emitter, not a
+       stray pixel. Sits beneath the sweep so the beam passes over it. -->
+  <g class="radar-origin">
+    <g stroke="#F0EDE4" stroke-width="2" opacity="0.45">
+      <line x1="500" y1="486" x2="500" y2="494" />
+      <line x1="500" y1="506" x2="500" y2="514" />
+      <line x1="486" y1="500" x2="494" y2="500" />
+      <line x1="506" y1="500" x2="514" y2="500" />
+    </g>
+    <circle cx="500" cy="500" r="6" fill="#F0EDE4" opacity="0.85" />
+  </g>
+
+  <!-- Rotating sweep — single clean stroke. The rotation alone is the
+       "active scan" reading; no trailing comet. -->
   <g class="radar-sweep" fill="none" stroke="#F0EDE4">
-    <line x1="500" y1="500" x2="784" y2="161" stroke-width="22" opacity="1"    />
-    <line x1="500" y1="500" x2="721" y2="118" stroke-width="20" opacity="0.55" />
-    <line x1="500" y1="500" x2="651" y2="85"  stroke-width="18" opacity="0.32" />
-    <line x1="500" y1="500" x2="577" y2="65"  stroke-width="16" opacity="0.18" />
-    <line x1="500" y1="500" x2="500" y2="58"  stroke-width="14" opacity="0.10" />
-    <line x1="500" y1="500" x2="423" y2="65"  stroke-width="12" opacity="0.05" />
+    <line x1="500" y1="500" x2="784" y2="161" stroke-width="22"
+      stroke-linecap="round" />
   </g>
 
   <!-- Phase 3 narrative: secondary unlocked blips. Faria is tracking
@@ -101,9 +111,22 @@ const { size = 56, class: className = '' } = Astro.props;
   <circle cx="732" cy="438" r="9"  fill="#F0EDE4" fill-opacity="0.5"  />
   <circle cx="133" cy="808" r="9"  fill="#F0EDE4" fill-opacity="0.45" />
 
-  <!-- Fi blip: filled dot + outer pulse ring (the "ping detected" cycle) -->
+  <!-- Soft gaussian glow under the Fi dot so the contact reads as an
+       active signal rather than a flat mark. Filter blurs a slightly
+       larger copy of the blip; the actual dot sits on top. -->
+  <defs>
+    <filter id="fi-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+    </filter>
+  </defs>
+  <circle cx="741" cy="768" r="22" fill="#F0EDE4"
+    filter="url(#fi-glow)" opacity="0.55" />
+
+  <!-- Fi blip: filled dot + two staggered ping rings (the echo). -->
   <circle cx="741" cy="768" r="18" fill="#F0EDE4" />
   <circle class="radar-pulse" cx="741" cy="768" r="18"
+    fill="none" stroke="#F0EDE4" stroke-width="3" />
+  <circle class="radar-pulse radar-pulse--echo" cx="741" cy="768" r="18"
     fill="none" stroke="#F0EDE4" stroke-width="3" />
 
   <!-- Phase 3 narrative: navy crosshair cut through the cream blip
@@ -173,12 +196,18 @@ const { size = 56, class: className = '' } = Astro.props;
     to   { transform: rotate(360deg); }
   }
 
-  /* Fi blip "ping" — outer ring expands and fades on a slow loop. */
+  /* Fi blip "ping" — outer ring expands and fades on a slow loop.
+     The echo variant runs the same animation offset by half the
+     period so the two rings interleave: while one fades, the next is
+     just starting. */
   .radar-mark .radar-pulse {
     transform-box: view-box;
     transform-origin: 741px 768px;
     animation: radar-pulse 2.6s cubic-bezier(0, 0.55, 0.45, 1) infinite;
     will-change: transform, opacity;
+  }
+  .radar-mark .radar-pulse--echo {
+    animation-delay: -1.3s;
   }
   @keyframes radar-pulse {
     0%   { transform: scale(1);   opacity: 0.7; }
@@ -186,16 +215,12 @@ const { size = 56, class: className = '' } = Astro.props;
     100% { transform: scale(3.6); opacity: 0;   }
   }
 
-  /* Respect reduced motion: stop animation, collapse the comet tail
-     to just the leading edge, and hide the pulse ring. The static
-     composition becomes identical to the pre-motion mark. */
+  /* Respect reduced motion: stop every animation and hide the pulse
+     rings entirely. The static composition is identical to favicon/OG. */
   @media (prefers-reduced-motion: reduce) {
     .radar-mark .radar-sweep,
     .radar-mark .radar-pulse {
       animation: none;
-    }
-    .radar-mark .radar-sweep > line:not(:first-child) {
-      display: none;
     }
     .radar-mark .radar-pulse {
       opacity: 0;

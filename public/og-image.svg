@@ -20,26 +20,35 @@
       <line x1="20"  y1="500" x2="68"  y2="500" stroke-width="14"/>
       <line x1="932" y1="500" x2="980" y2="500" stroke-width="14"/>
     </g>
-    <!-- Phase 4 shape: outer scope corner brackets -->
+    <!-- outer scope corner brackets -->
     <g fill="none" stroke="#F0EDE4" stroke-width="10" opacity="0.85">
       <polyline points="40,120 40,40 120,40"/>
       <polyline points="880,40 960,40 960,120"/>
       <polyline points="40,880 40,960 120,960"/>
       <polyline points="880,960 960,960 960,880"/>
     </g>
-    <!-- Phase 1 motion (frozen): comet-tail sweep, leading edge at 40° CW
-         from north with decaying tail behind it. -->
-    <g fill="none" stroke="#F0EDE4">
-      <line x1="500" y1="500" x2="784" y2="161" stroke-width="22" opacity="1"/>
-      <line x1="500" y1="500" x2="721" y2="118" stroke-width="20" opacity="0.55"/>
-      <line x1="500" y1="500" x2="651" y2="85"  stroke-width="18" opacity="0.32"/>
-      <line x1="500" y1="500" x2="577" y2="65"  stroke-width="16" opacity="0.18"/>
-      <line x1="500" y1="500" x2="500" y2="58"  stroke-width="14" opacity="0.10"/>
-      <line x1="500" y1="500" x2="423" y2="65"  stroke-width="12" opacity="0.05"/>
+    <!-- antenna origin mark at radar centre -->
+    <g stroke="#F0EDE4" stroke-width="2" opacity="0.45">
+      <line x1="500" y1="486" x2="500" y2="494"/>
+      <line x1="500" y1="506" x2="500" y2="514"/>
+      <line x1="486" y1="500" x2="494" y2="500"/>
+      <line x1="506" y1="500" x2="514" y2="500"/>
     </g>
-    <!-- Phase 3 narrative: secondary unlocked blips on rings 2 + 4 -->
+    <circle cx="500" cy="500" r="6" fill="#F0EDE4" opacity="0.85"/>
+    <!-- sweep — single clean stroke frozen at 40° CW from north -->
+    <line x1="500" y1="500" x2="784" y2="161"
+      stroke="#F0EDE4" stroke-width="22" stroke-linecap="round"/>
+    <!-- secondary unlocked blips on rings 2 + 4 -->
     <circle cx="732" cy="438" r="9" fill="#F0EDE4" fill-opacity="0.5"/>
     <circle cx="133" cy="808" r="9" fill="#F0EDE4" fill-opacity="0.45"/>
+    <!-- soft glow under the Fi blip -->
+    <defs>
+      <filter id="og-fi-glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+      </filter>
+    </defs>
+    <circle cx="741" cy="768" r="22" fill="#F0EDE4"
+      filter="url(#og-fi-glow)" opacity="0.55"/>
     <!-- Fi blip dot on ring 3 at polar 138° -->
     <circle cx="741" cy="768" r="18" fill="#F0EDE4"/>
     <!-- Phase 3 narrative: navy crosshair cut through the blip -->
