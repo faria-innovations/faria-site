@@ -1246,3 +1246,194 @@ figcaption.parcel-map-caption strong {
 .invest-email a:focus-visible {
   color: var(--accent);
 }
+
+/* ============================================================ */
+/* v3.4 — commercial clarity pass                               */
+/* faria hero, proof row, what faria does, venture cta          */
+/* ============================================================ */
+
+/* Faria hero — replaces the Parcentry-only hero. Faria-level
+   company statement above all venture content. */
+.faria-hero {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--hairline);
+}
+.faria-hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  line-height: 1.07;
+  letter-spacing: -0.005em;
+  margin: 0.85rem 0 1.25rem;
+  color: var(--navy);
+  max-width: 28ch;
+  text-transform: none;
+}
+.faria-hero-title .faria-name {
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 0.005em;
+}
+.faria-hero-sub {
+  font-family: var(--font-text);
+  font-size: clamp(1.02rem, 1.45vw, 1.22rem);
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 1.85rem;
+  max-width: 60ch;
+}
+.faria-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+}
+
+/* 4-cell proof row strip */
+.faria-proof-row {
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--hairline);
+}
+.proof-row-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 760px) {
+  .proof-row-list { grid-template-columns: repeat(4, 1fr); }
+}
+.proof-row-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--hairline);
+}
+@media (min-width: 760px) {
+  .proof-row-item {
+    border-bottom: 0;
+    border-right: 1px solid var(--hairline);
+    padding-inline: 1.5rem;
+    padding-block: 0;
+  }
+  .proof-row-item:first-child { padding-left: 0; }
+  .proof-row-item:last-child { border-right: 0; padding-right: 0; }
+}
+.proof-row-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.45rem, 2.6vw, 2.1rem);
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--navy);
+}
+.proof-row-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+/* What Faria Does — 3-cell explainer */
+.what-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+@media (min-width: 760px) {
+  .what-list { grid-template-columns: repeat(3, 1fr); border-top: 0; }
+}
+.what-list li {
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+}
+@media (min-width: 760px) {
+  .what-list li {
+    padding: 0 1.5rem;
+    border-bottom: 0;
+    border-right: 1px solid var(--hairline);
+  }
+  .what-list li:first-child { padding-left: 0; }
+  .what-list li:last-child { border-right: 0; padding-right: 0; }
+}
+.what-list-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 0 0 0.55rem;
+}
+.what-list-body {
+  font-family: var(--font-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* venture entry enrichments — expanded sentence, proof list, per-venture CTA */
+.venture-row .venture-expanded {
+  font-family: var(--font-text);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: -0.25rem 0 0;
+  max-width: 56ch;
+}
+.venture-row .venture-proof {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding-block: 0.75rem;
+}
+.venture-row .venture-proof li {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+}
+.venture-row .venture-cta {
+  margin-top: 0.25rem;
+}
+
+/* Operating Proof — statement-style list (longer sentences) */
+.proof-statement-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--hairline);
+  max-width: 68ch;
+}
+.proof-statement-list li {
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 500;
+}
+.proof-statement-list li::before {
+  content: '▍ ';
+  color: var(--accent);
+  margin-right: 0.4rem;
+  font-weight: 600;
+}

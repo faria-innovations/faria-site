@@ -8,23 +8,48 @@ import { site } from '../data/site';
 ---
 
 <BaseLayout
-  title="Faria Innovations — Venture Index"
-  description="Faria Innovations builds software, media, and experimental ventures from one founder-led operating system. Current: Parcentry, Flight Risk, Labs."
+  title="Faria Innovations — Software, Media, and Experimental Ventures"
+  description="Faria Innovations builds and operates software, media, and experimental ventures. Current work: Parcentry (commercial real estate intelligence), Flight Risk (original animated IP), Labs (early-stage experiments)."
 >
-  <section class="faria-thesis" id="faria-thesis" aria-labelledby="faria-thesis-label">
+  <section class="faria-hero" id="faria-hero" aria-labelledby="faria-hero-title">
     <div class="container">
-      <p class="cred-label" id="faria-thesis-label">
+      <p class="cred-label">
         <span class="accent-tick" aria-hidden="true">▍</span>
         <span>FARIA INNOVATIONS</span>
       </p>
-      <div class="faria-thesis-body">
-        <p>
-          Faria Innovations builds software, media, and experimental ventures from one founder-led operating system.
-        </p>
-        <p>
-          Current ventures span commercial real estate intelligence, original entertainment IP, and early-stage experiments.
-        </p>
+      <h2 class="faria-hero-title" id="faria-hero-title">
+        <em class="faria-name">Faria Innovations</em> builds and operates software, media, and experimental ventures.
+      </h2>
+      <p class="faria-hero-sub">
+        Current work includes commercial real estate intelligence, original animated IP, and early-stage systems experiments.
+      </p>
+      <div class="faria-hero-ctas">
+        <a class="cta" href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20Inquiry">Partnership / Investment Inquiry</a>
+        <a class="cta cta--ghost" href="#ventures">View Current Ventures&nbsp;→</a>
       </div>
+    </div>
+  </section>
+
+  <section class="faria-proof-row" aria-label="Operating signals">
+    <div class="container">
+      <ul class="proof-row-list" role="list">
+        <li class="proof-row-item">
+          <span class="proof-row-num">281,476</span>
+          <span class="proof-row-label">Parcels indexed</span>
+        </li>
+        <li class="proof-row-item">
+          <span class="proof-row-num">Nightly</span>
+          <span class="proof-row-label">Public-record scans</span>
+        </li>
+        <li class="proof-row-item">
+          <span class="proof-row-num">Original IP</span>
+          <span class="proof-row-label">In development</span>
+        </li>
+        <li class="proof-row-item">
+          <span class="proof-row-num">Active</span>
+          <span class="proof-row-label">Venture build pipeline</span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -38,37 +63,89 @@ import { site } from '../data/site';
     </dl>
   </section>
 
-  <section class="parcentry-hero" id="parcentry-hero" aria-labelledby="parcentry-hero-title">
+  <section class="cred-section" id="what-faria-does" aria-labelledby="what-faria-label">
     <div class="container">
-      <p class="parcentry-hero-category">
+      <p class="cred-label" id="what-faria-label">
         <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>COMMERCIAL REAL ESTATE SOFTWARE</span>
+        <span>WHAT FARIA DOES</span>
       </p>
-      <h2 class="parcentry-hero-title" id="parcentry-hero-title">PARCENTRY</h2>
-      <p class="parcentry-hero-lead">
-        Track public-record changes across commercial properties.
-      </p>
-      <p class="parcentry-hero-benefit">
-        Know the moment a sale, lien, ownership transfer, permit filing, or zoning change hits the properties you care about.
-      </p>
-      <div class="parcentry-hero-ctas">
-        <a class="cta" href="mailto:felipe@fariainnovations.com?subject=Parcentry%20Demo%20Request">Request Demo</a>
-        <a class="cta cta--ghost" href="/parcentry/">View Sample Report&nbsp;→</a>
-      </div>
+      <ol class="what-list" role="list">
+        <li>
+          <h3 class="what-list-title">Builds software</h3>
+          <p class="what-list-body">Commercial tools with operational use cases.</p>
+        </li>
+        <li>
+          <h3 class="what-list-title">Develops IP</h3>
+          <p class="what-list-body">Original worlds, characters, and entertainment concepts.</p>
+        </li>
+        <li>
+          <h3 class="what-list-title">Runs experiments</h3>
+          <p class="what-list-body">Small systems and prototypes that may become future ventures.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <section class="cred-section" id="current-operations" aria-labelledby="cred-ops-label">
+  <section class="ventures-section" id="ventures" aria-labelledby="ventures-label">
+    <div class="container dossier-grid">
+      <aside class="dossier-opener">
+        <span class="dossier-numeral" aria-hidden="true">01</span>
+        <p class="dossier-opener-label" id="ventures-label">CURRENT VENTURES</p>
+      </aside>
+
+      <ol class="venture-list" role="list">
+        {
+          ventures.map((v) => (
+            <li class={`venture-row venture-row--${v.atmosphere ?? 'standard'}`}>
+              <div class="venture-head">
+                <p class="venture-category">{v.category}</p>
+                <h3 class="venture-name">
+                  <a href={v.entry}>{v.name}</a>
+                </h3>
+                <p class="venture-desc">{v.description}</p>
+                {v.expanded && <p class="venture-expanded">{v.expanded}</p>}
+              </div>
+
+              <dl class="venture-stage">
+                <dt>STAGE</dt>
+                <dd>{v.stage}</dd>
+              </dl>
+
+              {v.proof && v.proof.length > 0 && (
+                <ul class="venture-proof" role="list">
+                  {v.proof.map((p) => <li>{p}</li>)}
+                </ul>
+              )}
+
+              {v.cta && (
+                <a class="cta venture-cta" href={v.cta.href}>{v.cta.label}</a>
+              )}
+
+              {v.external && (
+                <div class="venture-links">
+                  <a href={v.external.href} rel="noopener">{v.external.label}</a>
+                </div>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="cred-section" id="operating-proof" aria-labelledby="op-proof-label">
     <div class="container">
-      <p class="cred-label" id="cred-ops-label">
+      <p class="cred-label" id="op-proof-label">
         <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>CURRENT OPERATIONS</span>
+        <span>OPERATING PROOF</span>
       </p>
-      <ul class="cred-list cred-list--2col" role="list">
-        <li>281,476 parcels indexed</li>
-        <li>Nightly public-record scans</li>
-        <li>Commercial real estate focus</li>
-        <li>Built and operated in-house</li>
+      <ul class="proof-statement-list" role="list">
+        <li>Parcentry is live as an active commercial software build.</li>
+        <li>281,476 parcels indexed.</li>
+        <li>Nightly public-record scans.</li>
+        <li>Flight Risk is an original animated IP in development.</li>
+        <li>Labs tracks early experiments and internal systems.</li>
+        <li>Faria has a live deployment pipeline and public venture index.</li>
       </ul>
     </div>
   </section>
@@ -95,116 +172,6 @@ import { site } from '../data/site';
           Representative output format. No customer data shown.
         </p>
       </article>
-    </div>
-  </section>
-
-  <section class="cred-section" id="who-its-for" aria-labelledby="cred-who-label">
-    <div class="container">
-      <p class="cred-label" id="cred-who-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>WHO IT'S FOR</span>
-      </p>
-      <ul class="cred-list cred-list--2col" role="list">
-        <li>Commercial real estate brokers</li>
-        <li>Acquisitions teams</li>
-        <li>Asset managers</li>
-        <li>Owners and operators</li>
-        <li>Developers</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="cred-section" id="why-parcentry" aria-labelledby="cred-why-label">
-    <div class="container">
-      <p class="cred-label" id="cred-why-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>WHY PARCENTRY</span>
-      </p>
-      <div class="cred-why">
-        <p>
-          Public-record changes often surface opportunities and risks before they become widely visible.
-        </p>
-        <p>
-          Parcentry monitors those signals and delivers them in a usable format.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="ventures-section" id="ventures" aria-labelledby="ventures-label">
-    <div class="container dossier-grid">
-      <aside class="dossier-opener">
-        <span class="dossier-numeral" aria-hidden="true">01</span>
-        <p class="dossier-opener-label" id="ventures-label">CURRENT VENTURES</p>
-      </aside>
-
-      <ol class="venture-list" role="list">
-        {
-          ventures.map((v) => (
-            <li class={`venture-row venture-row--${v.atmosphere ?? 'standard'}`}>
-              <div class="venture-head">
-                <p class="venture-category">{v.category}</p>
-                <h3 class="venture-name">
-                  <a href={v.entry}>{v.name}</a>
-                </h3>
-                <p class="venture-desc">{v.description}</p>
-              </div>
-
-              <dl class="venture-stage">
-                <dt>STAGE</dt>
-                <dd>{v.stage}</dd>
-              </dl>
-
-              <div class="venture-links">
-                {v.entry.startsWith('#') ? (
-                  <a href={v.entry}>working field ↓</a>
-                ) : (
-                  <a href={v.entry}>entry →</a>
-                )}
-                {v.external && (
-                  <a href={v.external.href} rel="noopener">{v.external.label}</a>
-                )}
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <section class="cred-section" id="why-portfolio" aria-labelledby="cred-why-portfolio-label">
-    <div class="container">
-      <p class="cred-label" id="cred-why-portfolio-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>WHY THIS PORTFOLIO</span>
-      </p>
-      <div class="cred-why">
-        <p>
-          Faria builds ventures that combine systems, media, and experimentation.
-        </p>
-        <p>
-          Some generate revenue. Some generate intellectual property. Some explore future opportunities.
-        </p>
-        <p>
-          The objective is not a single product. The objective is a repeatable venture-building process.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cred-section" id="operating-proof" aria-labelledby="cred-op-proof-label">
-    <div class="container">
-      <p class="cred-label" id="cred-op-proof-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>OPERATING PROOF</span>
-      </p>
-      <ul class="cred-list cred-list--2col" role="list">
-        <li>281,476 parcels indexed</li>
-        <li>Nightly public-record scans</li>
-        <li>Live commercial software product</li>
-        <li>Original animated IP in development</li>
-        <li>Active deployment and operating infrastructure</li>
-      </ul>
     </div>
   </section>
 
@@ -255,10 +222,10 @@ import { site } from '../data/site';
     <div class="container">
       <p class="cred-label" id="invest-label">
         <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>INVESTMENT / PARTNERSHIP INQUIRIES</span>
+        <span>PARTNERSHIP / INVESTMENT INQUIRIES</span>
       </p>
       <p class="invest-email">
-        <a href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20%E2%80%94%20Partnership%20Inquiry">felipe@fariainnovations.com</a>
+        <a href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20Inquiry">felipe@fariainnovations.com</a>
       </p>
     </div>
   </section>
