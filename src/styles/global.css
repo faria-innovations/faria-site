@@ -215,14 +215,43 @@ a:hover { color: var(--navy); }
   color: var(--ink);
   font-weight: 600;
   display: inline;
+  /* Real gap between label and value (instead of a collapsible space). */
+  margin-right: 0.55rem;
 }
-.registry-fields dt::after { content: ' '; }
 .registry-fields dd {
   margin: 0;
   display: inline;
 }
 .registry-field {
   padding-block: 0.3rem;
+}
+
+/* On phones the registry strip was crowding the viewport edge —
+   give it dedicated breathing room and stack each field's label
+   above the value so long strings like "PARENT COMPANY / VENTURE
+   INDEX" don't run flush to the edge. */
+@media (max-width: 760px) {
+  .registry-meta .container {
+    padding-inline: clamp(20px, 5vw, 28px);
+  }
+  .registry-fields {
+    grid-template-columns: 1fr;
+    gap: 0.85rem 0;
+  }
+  .registry-fields dt,
+  .registry-fields dd {
+    display: block;
+  }
+  .registry-fields dt {
+    margin-right: 0;
+    margin-bottom: 0.1rem;
+    color: var(--gray);
+    opacity: 0.85;
+  }
+  .registry-fields dd {
+    color: var(--ink);
+    font-weight: 500;
+  }
 }
 
 /* ------------------------------------------------------------ */
