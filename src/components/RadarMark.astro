@@ -191,6 +191,7 @@ const { size = 56, class: className = '' } = Astro.props;
      anchors its fill-box to the full viewBox, so transform-origin:
      center evaluates to (500, 500). No transform-box needed. */
   .radar-mark .radar-sweep {
+    transform-box: fill-box;
     transform-origin: center;
     animation: radar-sweep-rotate 7s linear infinite;
     will-change: transform;
@@ -204,6 +205,7 @@ const { size = 56, class: className = '' } = Astro.props;
      its geometric centre, so transform-origin: center pivots on
      (500, 500). */
   .radar-mark .radar-ping {
+    transform-box: fill-box;
     transform-origin: center;
     animation: radar-ping 4s ease-out infinite;
     opacity: 0;
@@ -220,6 +222,7 @@ const { size = 56, class: className = '' } = Astro.props;
 
   /* Fi blip PULSE rings — same circle/fill-box trick. */
   .radar-mark .radar-pulse {
+    transform-box: fill-box;
     transform-origin: center;
     animation: radar-pulse 2.6s cubic-bezier(0, 0.55, 0.45, 1) infinite;
     will-change: transform, opacity;
@@ -236,6 +239,7 @@ const { size = 56, class: className = '' } = Astro.props;
   /* Fi ACQUISITION FLASH, locked to the sweep's 7s cycle. Peaks at
      27.2% of the loop when the rotating beam crosses Fi at 138°. */
   .radar-mark .fi-acquire {
+    transform-box: fill-box;
     transform-origin: center;
     opacity: 0;
     animation: fi-acquire 7s linear infinite;
