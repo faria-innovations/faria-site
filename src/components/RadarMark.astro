@@ -85,6 +85,15 @@ const { size = 56, class: className = '' } = Astro.props;
     <text x="175" y="825">4</text>
   </g>
 
+  <!-- Outward sonar ping wave from the antenna. Two rings expand from
+       the centre on a 4s loop, staggered by half a period so the next
+       wave is emitted while the previous is still receding. Subtle
+       — opacity peaks at 0.45 then decays. -->
+  <circle class="radar-ping" cx="500" cy="500" r="12"
+    fill="none" stroke="#F0EDE4" stroke-width="2.5" />
+  <circle class="radar-ping radar-ping--echo" cx="500" cy="500" r="12"
+    fill="none" stroke="#F0EDE4" stroke-width="2.5" />
+
   <!-- Antenna mark at the radar centre — small filled dot plus four
        micro-ticks so the origin reads as an engineered emitter, not a
        stray pixel. Sits beneath the sweep so the beam passes over it. -->
@@ -107,9 +116,12 @@ const { size = 56, class: className = '' } = Astro.props;
 
   <!-- Phase 3 narrative: secondary unlocked blips. Faria is tracking
        more than one venture; Fi is the acquired contact, these are
-       the others in the field. Smaller, no lockbox, dimmer fill. -->
-  <circle cx="732" cy="438" r="9"  fill="#F0EDE4" fill-opacity="0.5"  />
-  <circle cx="133" cy="808" r="9"  fill="#F0EDE4" fill-opacity="0.45" />
+       the others in the field. Smaller, no lockbox, dimmer fill.
+       The inner one blinks on a 4.2s loop so it reads as an
+       intermittent contact at the edge of detection. -->
+  <circle class="radar-blip-secondary"
+    cx="732" cy="438" r="9" fill="#F0EDE4" fill-opacity="0.5" />
+  <circle cx="133" cy="808" r="9" fill="#F0EDE4" fill-opacity="0.45" />
 
   <!-- Soft gaussian glow under the Fi dot so the contact reads as an
        active signal rather than a flat mark. Filter blurs a slightly
@@ -128,6 +140,15 @@ const { size = 56, class: className = '' } = Astro.props;
     fill="none" stroke="#F0EDE4" stroke-width="3" />
   <circle class="radar-pulse radar-pulse--echo" cx="741" cy="768" r="18"
     fill="none" stroke="#F0EDE4" stroke-width="3" />
+
+  <!-- Acquisition flash, timed to the rotating sweep crossing 138°.
+       The sweep starts at 40° CW from north and rotates 360° over 7s,
+       so it reaches Fi (at 138°) at 98/360 ≈ 27.2% of the cycle. A
+       brief expanding ring fires from the Fi position around that
+       moment — the radar's "I just detected you" pulse, locked to
+       the actual sweep position. -->
+  <circle class="fi-acquire" cx="741" cy="768" r="14"
+    fill="none" stroke="#F0EDE4" stroke-width="4" />
 
   <!-- Phase 3 narrative: navy crosshair cut through the cream blip
        turns the dot into a target reticle. Drawn in #0A1F44 (paper
@@ -215,14 +236,68 @@ const { size = 56, class: className = '' } = Astro.props;
     100% { transform: scale(3.6); opacity: 0;   }
   }
 
-  /* Respect reduced motion: stop every animation and hide the pulse
-     rings entirely. The static composition is identical to favicon/OG. */
+  /* Outward sonar ping wave from the antenna. Expands from r≈12 to
+     r≈600 over 4s, peaking in opacity early then decaying.  The echo
+     starts at -2s so the two waves interleave at half-period. */
+  .radar-mark .radar-ping {
+    transform-box: view-box;
+    transform-origin: 500px 500px;
+    animation: radar-ping 4s ease-out infinite;
+    will-change: transform, opacity;
+  }
+  .radar-mark .radar-ping--echo {
+    animation-delay: -2s;
+  }
+  @keyframes radar-ping {
+    0%   { transform: scale(1);  opacity: 0;    }
+    8%   { opacity: 0.45; }
+    100% { transform: scale(50); opacity: 0;    }
+  }
+
+  /* Fi acquisition flash, synchronised to the sweep.
+     Sweep starts at 40° CW from north and rotates 360°/7s.  It
+     crosses the Fi blip at polar 138° → 98°/360° = 27.2% into the
+     cycle.  The flash peaks there. */
+  .radar-mark .fi-acquire {
+    transform-box: view-box;
+    transform-origin: 741px 768px;
+    opacity: 0;
+    animation: fi-acquire 7s linear infinite;
+    will-change: transform, opacity;
+  }
+  @keyframes fi-acquire {
+    0%, 22%   { transform: scale(1);    opacity: 0;    }
+    27%       { transform: scale(1);    opacity: 0.95; }
+    36%       { transform: scale(2.4);  opacity: 0;    }
+    100%      { transform: scale(1);    opacity: 0;    }
+  }
+
+  /* Slow blink on the inner secondary blip — different period from
+     everything else (4.2s, not a multiple of pulse/ping/sweep), so it
+     stays out of sync and reads as an intermittent contact. */
+  .radar-mark .radar-blip-secondary {
+    animation: radar-blink 4.2s ease-in-out infinite;
+    will-change: fill-opacity;
+  }
+  @keyframes radar-blink {
+    0%, 100% { fill-opacity: 0.55; }
+    45%, 55% { fill-opacity: 0.12; }
+  }
+
+  /* Respect reduced motion: stop every animation and hide every
+     animated element. The static composition is identical to
+     favicon/OG. */
   @media (prefers-reduced-motion: reduce) {
     .radar-mark .radar-sweep,
-    .radar-mark .radar-pulse {
+    .radar-mark .radar-pulse,
+    .radar-mark .radar-ping,
+    .radar-mark .fi-acquire,
+    .radar-mark .radar-blip-secondary {
       animation: none;
     }
-    .radar-mark .radar-pulse {
+    .radar-mark .radar-pulse,
+    .radar-mark .radar-ping,
+    .radar-mark .fi-acquire {
       opacity: 0;
     }
   }
