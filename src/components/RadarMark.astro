@@ -1,19 +1,20 @@
 ---
 // RadarSignalMark — institutional mark per V3 Identity System Manual.
 //
-// Motion is split between SMIL and CSS by what's safe on every browser:
-//   • SMIL (<animate> / <animateTransform>) handles every geometry
-//     animation — sweep rotation, ping waves, pulse rings, Fi
-//     acquisition flash. SMIL pivots around explicit viewBox points
-//     (rotate "0 cx cy") and animates raw attributes (r, opacity),
-//     which works on iOS Safari < 16 where `transform-box: view-box`
-//     and CSS-on-SVG transform-origins are unreliable.
-//   • CSS handles the fill-opacity blinks (Fi dot, secondary blip).
-//     These have no transform involvement and are fine on every
-//     browser; the CSS path also lets `prefers-reduced-motion: reduce`
-//     suppress them cleanly via media query.
+// Motion is done in pure CSS with the "filler-rect + transform-origin:
+// center" pattern, which works on every browser back to mobile Safari
+// 9 without depending on transform-box: view-box (which iOS Safari < 16
+// doesn't support and which broke the sweep on phones).
 //
-// Browsers respect OS-level reduced-motion for SMIL automatically.
+//   • Sweep rotation: wrap the rotating <line> in a <g> containing an
+//     invisible 1000×1000 rect. The rect anchors the group's fill-box
+//     to the viewBox, so transform-origin: center evaluates to (500,
+//     500) regardless of which child is actually drawn.
+//   • Ping / pulse / acquisition rings: the circles already have their
+//     geometric centre = their fill-box centre, so transform-origin:
+//     center pivots correctly with no filler rect needed.
+//   • Two blinks (Fi dot, secondary blip) just animate fill-opacity —
+//     no transforms involved, works universally.
 
 interface Props {
   /** Rendered pixel size. */
@@ -83,23 +84,13 @@ const { size = 56, class: className = '' } = Astro.props;
     <text x="175" y="825">4</text>
   </g>
 
-  <!-- Outward sonar ping wave from the antenna. SMIL animates r and
-       opacity directly so it works on every browser including iOS<16.
-       Two rings, second starts at -2s so they interleave. -->
+  <!-- Outward sonar ping wave from the antenna. The circle's fill-box
+       centre = its geometric centre = (500, 500), so transform-origin:
+       center pivots correctly. -->
   <circle class="radar-ping" cx="500" cy="500" r="12"
-    fill="none" stroke="#F0EDE4" stroke-width="2.5" opacity="0">
-    <animate attributeName="r" from="12" to="600"
-      dur="4s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0;0.45;0" keyTimes="0;0.08;1"
-      dur="4s" repeatCount="indefinite" />
-  </circle>
-  <circle class="radar-ping" cx="500" cy="500" r="12"
-    fill="none" stroke="#F0EDE4" stroke-width="2.5" opacity="0">
-    <animate attributeName="r" from="12" to="600"
-      dur="4s" begin="-2s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0;0.45;0" keyTimes="0;0.08;1"
-      dur="4s" begin="-2s" repeatCount="indefinite" />
-  </circle>
+    fill="none" stroke="#F0EDE4" stroke-width="2.5" />
+  <circle class="radar-ping radar-ping--echo" cx="500" cy="500" r="12"
+    fill="none" stroke="#F0EDE4" stroke-width="2.5" />
 
   <!-- Antenna mark at the radar centre. -->
   <g class="radar-origin">
@@ -112,17 +103,18 @@ const { size = 56, class: className = '' } = Astro.props;
     <circle cx="500" cy="500" r="6" fill="#F0EDE4" opacity="0.85" />
   </g>
 
-  <!-- Rotating sweep — SMIL rotate "0 500 500" → "360 500 500" pivots
-       exactly on viewBox centre on every browser. -->
-  <g class="radar-sweep" fill="none" stroke="#F0EDE4">
-    <line x1="500" y1="500" x2="784" y2="161" stroke-width="22"
-      stroke-linecap="round" />
-    <animateTransform attributeName="transform" type="rotate"
-      from="0 500 500" to="360 500 500"
-      dur="7s" repeatCount="indefinite" />
+  <!-- Rotating sweep — the filler rect spans the full viewBox so the
+       parent <g>'s fill-box matches viewBox. transform-origin: center
+       on the parent then evaluates to (500, 500). Works on every
+       browser including iOS Safari that lacks transform-box: view-box. -->
+  <g class="radar-sweep">
+    <rect x="0" y="0" width="1000" height="1000" fill="none" stroke="none"
+      pointer-events="none" aria-hidden="true" />
+    <line x1="500" y1="500" x2="784" y2="161"
+      stroke="#F0EDE4" stroke-width="22" stroke-linecap="round" />
   </g>
 
-  <!-- Secondary unlocked blips. Inner blinks via CSS (no transform). -->
+  <!-- Secondary unlocked blips. Inner blinks via CSS fill-opacity. -->
   <circle class="radar-blip-secondary"
     cx="732" cy="438" r="9" fill="#F0EDE4" fill-opacity="0.5" />
   <circle cx="133" cy="808" r="9" fill="#F0EDE4" fill-opacity="0.45" />
@@ -136,38 +128,18 @@ const { size = 56, class: className = '' } = Astro.props;
   <circle cx="741" cy="768" r="22" fill="#F0EDE4"
     filter="url(#fi-glow)" opacity="0.55" />
 
-  <!-- Fi blip: filled dot (CSS-blinks via fill-opacity) + two SMIL
-       ping rings around it. -->
+  <!-- Fi blip: filled dot (CSS-blinks via fill-opacity) + two pulse
+       rings around it. Circle fill-box centre = geometric centre, so
+       transform-origin: center works without a filler rect. -->
   <circle class="fi-dot" cx="741" cy="768" r="18" fill="#F0EDE4" />
   <circle class="radar-pulse" cx="741" cy="768" r="18"
-    fill="none" stroke="#F0EDE4" stroke-width="3" opacity="0">
-    <animate attributeName="r" from="18" to="65"
-      dur="2.6s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0.7;0;0" keyTimes="0;0.8;1"
-      dur="2.6s" repeatCount="indefinite" />
-  </circle>
-  <circle class="radar-pulse" cx="741" cy="768" r="18"
-    fill="none" stroke="#F0EDE4" stroke-width="3" opacity="0">
-    <animate attributeName="r" from="18" to="65"
-      dur="2.6s" begin="-1.3s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0.7;0;0" keyTimes="0;0.8;1"
-      dur="2.6s" begin="-1.3s" repeatCount="indefinite" />
-  </circle>
+    fill="none" stroke="#F0EDE4" stroke-width="3" />
+  <circle class="radar-pulse radar-pulse--echo" cx="741" cy="768" r="18"
+    fill="none" stroke="#F0EDE4" stroke-width="3" />
 
-  <!-- Fi acquisition flash, locked to the sweep's 7s cycle so the
-       flash peaks at 27.2% of the loop (when the rotating beam
-       crosses Fi at polar 138°). -->
+  <!-- Fi acquisition flash, timed to the sweep's 7s cycle. -->
   <circle class="fi-acquire" cx="741" cy="768" r="14"
-    fill="none" stroke="#F0EDE4" stroke-width="4" opacity="0">
-    <animate attributeName="r"
-      values="14;14;14;33;14"
-      keyTimes="0;0.22;0.27;0.36;1"
-      dur="7s" repeatCount="indefinite" />
-    <animate attributeName="opacity"
-      values="0;0;0.95;0;0"
-      keyTimes="0;0.22;0.27;0.36;1"
-      dur="7s" repeatCount="indefinite" />
-  </circle>
+    fill="none" stroke="#F0EDE4" stroke-width="4" />
 
   <!-- Navy crosshair cut through the cream blip. -->
   <g stroke="#0A1F44" stroke-width="3" stroke-linecap="butt">
@@ -215,10 +187,69 @@ const { size = 56, class: className = '' } = Astro.props;
 </svg>
 
 <style>
-  /* CSS-driven fill-opacity blinks. No transform-origin or
-     transform-box involved, so these work identically on every
-     browser including older iOS Safari. */
+  /* SWEEP — rotate around centre. Filler rect inside .radar-sweep
+     anchors its fill-box to the full viewBox, so transform-origin:
+     center evaluates to (500, 500). No transform-box needed. */
+  .radar-mark .radar-sweep {
+    transform-origin: center;
+    animation: radar-sweep-rotate 7s linear infinite;
+    will-change: transform;
+  }
+  @keyframes radar-sweep-rotate {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+  }
 
+  /* SONAR PING wave from antenna. The circle's fill-box centre is
+     its geometric centre, so transform-origin: center pivots on
+     (500, 500). */
+  .radar-mark .radar-ping {
+    transform-origin: center;
+    animation: radar-ping 4s ease-out infinite;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .radar-mark .radar-ping--echo {
+    animation-delay: -2s;
+  }
+  @keyframes radar-ping {
+    0%   { transform: scale(1);  opacity: 0;    }
+    8%   { opacity: 0.45; }
+    100% { transform: scale(50); opacity: 0;    }
+  }
+
+  /* Fi blip PULSE rings — same circle/fill-box trick. */
+  .radar-mark .radar-pulse {
+    transform-origin: center;
+    animation: radar-pulse 2.6s cubic-bezier(0, 0.55, 0.45, 1) infinite;
+    will-change: transform, opacity;
+  }
+  .radar-mark .radar-pulse--echo {
+    animation-delay: -1.3s;
+  }
+  @keyframes radar-pulse {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    80%  { opacity: 0; }
+    100% { transform: scale(3.6); opacity: 0;   }
+  }
+
+  /* Fi ACQUISITION FLASH, locked to the sweep's 7s cycle. Peaks at
+     27.2% of the loop when the rotating beam crosses Fi at 138°. */
+  .radar-mark .fi-acquire {
+    transform-origin: center;
+    opacity: 0;
+    animation: fi-acquire 7s linear infinite;
+    will-change: transform, opacity;
+  }
+  @keyframes fi-acquire {
+    0%, 22%   { transform: scale(1);    opacity: 0;    }
+    27%       { transform: scale(1);    opacity: 0.95; }
+    36%       { transform: scale(2.4);  opacity: 0;    }
+    100%      { transform: scale(1);    opacity: 0;    }
+  }
+
+  /* Fi DOT blink — pure fill-opacity, no transform involvement,
+     works universally. */
   .radar-mark .fi-dot {
     animation: fi-dot-blink 1.3s ease-in-out infinite;
     will-change: fill-opacity;
@@ -228,6 +259,7 @@ const { size = 56, class: className = '' } = Astro.props;
     50%      { fill-opacity: 0.45; }
   }
 
+  /* Secondary blip blink — pure fill-opacity. */
   .radar-mark .radar-blip-secondary {
     animation: radar-blink 4.2s ease-in-out infinite;
     will-change: fill-opacity;
@@ -237,13 +269,20 @@ const { size = 56, class: className = '' } = Astro.props;
     45%, 55% { fill-opacity: 0.12; }
   }
 
-  /* Reduced-motion fallback. Stops the two CSS blinks at full
-     opacity. SMIL animations are stopped by the inline script in
-     BaseLayout (svg.pauseAnimations() on every <svg> in radar). */
+  /* Reduced-motion: stop every animation, hide animated overlays. */
   @media (prefers-reduced-motion: reduce) {
+    .radar-mark .radar-sweep,
+    .radar-mark .radar-ping,
+    .radar-mark .radar-pulse,
+    .radar-mark .fi-acquire,
     .radar-mark .fi-dot,
     .radar-mark .radar-blip-secondary {
       animation: none;
+    }
+    .radar-mark .radar-ping,
+    .radar-mark .radar-pulse,
+    .radar-mark .fi-acquire {
+      opacity: 0;
     }
   }
 </style>
