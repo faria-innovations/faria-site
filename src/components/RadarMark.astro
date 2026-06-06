@@ -84,10 +84,24 @@ const { size = 56, class: className = '' } = Astro.props;
     <line x1="500" y1="500" x2="423" y2="65"  stroke-width="12" opacity="0.05" />
   </g>
 
+  <!-- Phase 3 narrative: secondary unlocked blips. Faria is tracking
+       more than one venture; Fi is the acquired contact, these are
+       the others in the field. Smaller, no lockbox, dimmer fill. -->
+  <circle cx="732" cy="438" r="9"  fill="#F0EDE4" fill-opacity="0.5"  />
+  <circle cx="133" cy="808" r="9"  fill="#F0EDE4" fill-opacity="0.45" />
+
   <!-- Fi blip: filled dot + outer pulse ring (the "ping detected" cycle) -->
   <circle cx="741" cy="768" r="18" fill="#F0EDE4" />
   <circle class="radar-pulse" cx="741" cy="768" r="18"
     fill="none" stroke="#F0EDE4" stroke-width="3" />
+
+  <!-- Phase 3 narrative: navy crosshair cut through the cream blip
+       turns the dot into a target reticle. Drawn in #0A1F44 (paper
+       field) so it reads as a notch in the cream, not a layer on top. -->
+  <g stroke="#0A1F44" stroke-width="3" stroke-linecap="butt">
+    <line x1="741" y1="755" x2="741" y2="781" />
+    <line x1="728" y1="768" x2="754" y2="768" />
+  </g>
 
   <!-- Tight rectilinear lockbox around the blip — corner brackets only,
        ≈ 70 viewBox units across, centered on (741, 768). -->
@@ -97,6 +111,12 @@ const { size = 56, class: className = '' } = Astro.props;
     <polyline points="706,781 706,803 728,803" />
     <polyline points="754,803 776,803 776,781" />
   </g>
+
+  <!-- Phase 3 narrative: leader tick from the lockbox to the Fi label.
+       Reads "this is what this label is annotating." -->
+  <line class="radar-leader"
+    x1="778" y1="768" x2="790" y2="768"
+    stroke="#F0EDE4" stroke-width="3" opacity="0.7" />
 
   <!-- "Fi" label sat to the right of the lockbox in the safe corridor. -->
   <text
