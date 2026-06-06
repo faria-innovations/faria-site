@@ -37,6 +37,17 @@ const { size = 56, class: className = '' } = Astro.props;
     <line x1="932" y1="500" x2="980" y2="500" stroke-width="14" />
   </g>
 
+  <!-- Phase 4 shape: outer scope frame. Four L-shaped corner brackets
+       — the lockbox idiom recast at the radar's outer scale. Slight
+       opacity drop so the rings still dominate the silhouette while
+       the frame supplies tactical containment. -->
+  <g class="radar-scope" fill="none" stroke="#F0EDE4" stroke-width="10" opacity="0.85">
+    <polyline points="40,120 40,40 120,40" />
+    <polyline points="880,40 960,40 960,120" />
+    <polyline points="40,880 40,960 120,960" />
+    <polyline points="880,960 960,960 960,880" />
+  </g>
+
   <!-- Phase 2 density: 12-spoke radial grid at 30° increments. Rendered
        behind the sweep so the comet trail passes over it. Stroke is the
        same cream as everything else but dropped to 0.18 opacity so it
