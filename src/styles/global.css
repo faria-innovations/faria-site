@@ -144,6 +144,11 @@ a:hover { color: var(--navy); }
   background: var(--paper);
   border-bottom: 2px solid var(--ink);
 }
+/* On phones, the masthead takes too much of the viewport — let it
+   scroll off instead of chasing the user. Desktop keeps sticky. */
+@media (max-width: 760px) {
+  .site-header { position: static; }
+}
 .site-header-inner {
   display: flex;
   align-items: center;

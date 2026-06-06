@@ -93,5 +93,15 @@ const buildTime = import.meta.env.VERCEL_GIT_COMMIT_REF
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      // Honour OS-level reduced-motion for SMIL animations inside SVG
+      // marks. CSS media queries don't reach SMIL; pauseAnimations()
+      // does. Costs ~20 bytes and runs once on load.
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('svg.radar-mark').forEach(function (svg) {
+          if (typeof svg.pauseAnimations === 'function') svg.pauseAnimations();
+        });
+      }
+    </script>
   </body>
 </html>
