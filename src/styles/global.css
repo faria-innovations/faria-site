@@ -168,13 +168,13 @@ a:hover { color: var(--navy); }
   color: var(--navy);
 }
 .header-lockup:hover { color: var(--ink); }
-.header-lockup .header-cube {
-  width: 56px;
-  height: 56px;
+.header-lockup .header-badge {
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
   display: block;
-  /* The cube PNG carries its own #00041B field that matches --paper, so
-     it sits flush on the masthead with no visible plate. */
+  /* The engineered "Fi" element tile — same mark as the browser-tab
+     favicon. Cream strokes on the navy masthead. */
 }
 .header-lockup .header-wordmark {
   height: auto;
@@ -182,7 +182,7 @@ a:hover { color: var(--navy); }
 }
 @media (max-width: 480px) {
   .header-lockup .header-wordmark { width: 124px; }
-  .header-lockup .header-cube { width: 46px; height: 46px; }
+  .header-lockup .header-badge { width: 40px; height: 40px; }
 }
 
 .site-nav {
@@ -1313,25 +1313,37 @@ figcaption.parcel-map-caption strong {
 
 /* Faria hero — replaces the Parcentry-only hero. Faria-level
    company statement above all venture content. */
-/* Cube hero-lockup banner — full-bleed identity block directly under the
-   masthead on the homepage. The PNG carries its own #00041B field that
-   matches --paper, so it reads as a seamless plate. */
-.hero-lockup {
+/* Split hero — cube lockup on the left, pitch + CTAs on the right.
+   The lockup PNG carries its own #00041B field matching --paper so it
+   sits flush with no plate. */
+.hero-split { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .hero-split-grid {
+    grid-template-columns: minmax(280px, 0.85fr) 1.15fr;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+}
+.hero-split-logo {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: var(--cube-bg);
-  padding: clamp(2.5rem, 6vw, 4.5rem) var(--margin) clamp(1.5rem, 4vw, 3rem);
-  border-bottom: 1px solid var(--hairline);
 }
 .hero-logo-lockup {
-  width: min(72vw, 360px);
+  width: min(78vw, 420px);
   height: auto;
   display: block;
 }
-@media (max-width: 760px) {
-  .hero-logo-lockup { width: min(70vw, 280px); }
+@media (min-width: 860px) {
+  .hero-logo-lockup { width: min(34vw, 440px); }
 }
+.hero-split-body { min-width: 0; }
+/* In the split layout the title leads (no eyebrow), so trim its top margin. */
+.hero-split .faria-hero-title { margin-top: 0; }
 
 .faria-hero {
   padding-block: clamp(3.5rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem);
