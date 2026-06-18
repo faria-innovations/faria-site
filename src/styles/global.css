@@ -16,18 +16,21 @@
 @import '@fontsource/ibm-plex-mono/600.css';
 
 :root {
-  /* palette — dark inversion. Brand navy is now the field; cream
-     (formerly paper) carries every mark, line, and letterform. */
-  --paper:    #0A1F44;   /* deep brand navy — the field. */
+  /* palette — v2 cube identity. The field is the exact near-black navy
+     sampled from the cube logo PNG corners so the cube blends seamlessly
+     into the page. Cream carries every mark, line, and letterform. */
+  --paper:    #00041B;   /* near-black brand navy — matches cube logo bg exactly. */
   --ink:      #F0EDE4;   /* warm cream — every mark and letterform. */
-  --navy:     #F0EDE4;   /* mark-color token. Was the navy ink; now its inverse. */
+  --navy:     #F0EDE4;   /* mark-color token. */
   --gray:     #9CA0AB;   /* readable mid-light gray for secondary text on navy. */
   --hairline: rgba(240, 237, 228, 0.22); /* faint cream dividers. */
-  /* Burnt Sienna — sole accent. Slightly warmer/brighter for legibility
-     on the dark navy field. Reserved for CTAs, tiny signal marks, and
-     selected rule highlights. Never on the wordmark, never as a large
-     surface, never on every link. */
+  /* Burnt Sienna — primary accent. CTAs, accent ticks, hover states. */
   --accent:   #C76833;
+  /* Cube blue — secondary signal colour, drawn from the cube logo's blue
+     blocks. Used for proof-row data figures only. Never on the wordmark,
+     never as a large surface. */
+  --signal:   #3B82F6;
+  --cube-bg:  #00041B;   /* exact match: sampled from the cube logo PNG. */
 
   /* derived */
   --rule:     var(--ink);
@@ -165,10 +168,13 @@ a:hover { color: var(--navy); }
   color: var(--navy);
 }
 .header-lockup:hover { color: var(--ink); }
-.header-lockup .radar-mark {
+.header-lockup .header-cube {
   width: 56px;
   height: 56px;
   flex-shrink: 0;
+  display: block;
+  /* The cube PNG carries its own #00041B field that matches --paper, so
+     it sits flush on the masthead with no visible plate. */
 }
 .header-lockup .header-wordmark {
   height: auto;
@@ -176,7 +182,7 @@ a:hover { color: var(--navy); }
 }
 @media (max-width: 480px) {
   .header-lockup .header-wordmark { width: 124px; }
-  .header-lockup .radar-mark { width: 46px; height: 46px; }
+  .header-lockup .header-cube { width: 46px; height: 46px; }
 }
 
 .site-nav {
@@ -1307,6 +1313,26 @@ figcaption.parcel-map-caption strong {
 
 /* Faria hero — replaces the Parcentry-only hero. Faria-level
    company statement above all venture content. */
+/* Cube hero-lockup banner — full-bleed identity block directly under the
+   masthead on the homepage. The PNG carries its own #00041B field that
+   matches --paper, so it reads as a seamless plate. */
+.hero-lockup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--cube-bg);
+  padding: clamp(2.5rem, 6vw, 4.5rem) var(--margin) clamp(1.5rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--hairline);
+}
+.hero-logo-lockup {
+  width: min(72vw, 360px);
+  height: auto;
+  display: block;
+}
+@media (max-width: 760px) {
+  .hero-logo-lockup { width: min(70vw, 280px); }
+}
+
 .faria-hero {
   padding-block: clamp(3.5rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem);
   border-bottom: 1px solid var(--hairline);
@@ -1402,7 +1428,7 @@ figcaption.parcel-map-caption strong {
   font-size: clamp(1.45rem, 2.6vw, 2.1rem);
   letter-spacing: 0;
   line-height: 1;
-  color: var(--navy);
+  color: var(--signal); /* cube blue — data figures */
 }
 .proof-row-label {
   font-family: var(--font-mono);

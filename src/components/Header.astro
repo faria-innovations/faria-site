@@ -1,12 +1,19 @@
 ---
-import RadarMark from './RadarMark.astro';
 import FariaWordmark from './FariaWordmark.astro';
 ---
 
 <header class="site-header">
   <div class="container site-header-inner">
     <a class="header-lockup" href="/" aria-label="Faria Innovations — home">
-      <RadarMark size={56} class="radar-mark" />
+      <img
+        class="header-cube"
+        src="/assets/faria-cube-logo.png"
+        width="56"
+        height="56"
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+      />
       <FariaWordmark width={172} class="header-wordmark" />
     </a>
     <nav class="site-nav" aria-label="Primary">
