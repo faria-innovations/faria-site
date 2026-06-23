@@ -38,6 +38,8 @@ export interface Venture {
   proof?: string[];
   /** Per-venture call-to-action button. */
   cta?: VentureCTA;
+  /** Optional secondary action (e.g. Book a Demo) shown beside the primary CTA. */
+  demo?: VentureCTA;
   /** Optional signals (legacy field, unused in current rendering). */
   signals?: VentureSignal[];
   /** Optional metadata rows (legacy field, unused in current rendering). */
@@ -62,6 +64,11 @@ export const ventures: Venture[] = [
       label: 'View Parcentry →',
       href: 'https://parcentry.com',
       external: true,
+    },
+    // Secondary action → product page demo section (internal route).
+    demo: {
+      label: 'Book a Demo',
+      href: '/parcentry/#book-demo',
     },
     atmosphere: 'standard',
   },

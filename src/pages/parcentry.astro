@@ -1,23 +1,508 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ── Demo scheduling configuration ───────────────────────────────────────────
+// To enable a "SCHEDULE DEMO" button that opens an external scheduler, set
+// PUBLIC_PARCENTRY_DEMO_URL in your environment. It MUST be prefixed with
+// PUBLIC_ so Astro exposes it at build time. Options:
+//   • repo-root .env file:        PUBLIC_PARCENTRY_DEMO_URL="https://cal.com/felipe/parcentry"
+//   • Vercel → Project → Settings → Environment Variables (same key)
+// When unset, the page falls back to a functional mailto: request below.
+// The raw value is never printed into the page — only used to build the link.
+const demoUrl = import.meta.env.PUBLIC_PARCENTRY_DEMO_URL;
+const demoMailto =
+  'mailto:felipe@fariainnovations.com?subject=Parcentry%20Demo%20Request&body=Name%3A%0ACompany%3A%0ARole%3A%0AMarket%3A%0AProperties%20or%20portfolio%20to%20monitor%3A%0A';
+
+const title =
+  'Parcentry — Public-record change intelligence for commercial real estate';
+const description =
+  'Monitor ownership transfers, liens, permits, zoning changes, and recorded documents across commercial properties.';
 ---
 
 <BaseLayout
-  title="Parcentry — Faria Innovations"
-  description="Parcentry tracks public-record changes across commercial properties."
+  title={title}
+  description={description}
+  chrome={false}
+  ogImage="/assets/parcentry-dashboard.png"
 >
-  <div class="container">
-    <article class="detail">
-      <p class="detail-category">COMMERCIAL REAL ESTATE</p>
-      <h1 class="detail-title">PARCENTRY</h1>
-      <div class="detail-body">
-        <p>Tracks public-record changes across commercial properties.</p>
-        <p>281K parcels indexed. Nightly automated scans. Public records.</p>
+  <div class="pc">
+    <!-- Minimal product chrome (back to parent company) -->
+    <div class="pc-topbar">
+      <div class="pc-container pc-topbar-inner">
+        <span class="pc-wordmark">Parcentry</span>
+        <a class="pc-back" href="/">&larr; Faria Innovations</a>
       </div>
-      <div class="detail-links">
-        <a href="https://parcentry.com" rel="noopener">parcentry.com →</a>
+    </div>
+
+    <!-- 1 ─ PRODUCT HERO ───────────────────────────────────────────────── -->
+    <header class="pc-hero">
+      <div class="pc-container">
+        <p class="pc-eyebrow">COMMERCIAL REAL ESTATE INTELLIGENCE</p>
+        <h1 class="pc-h1">Track public-record changes across commercial properties.</h1>
+        <p class="pc-lead">
+          Know when ownership, lien, permit, zoning, or recorded-document activity
+          changes around the properties and markets you follow.
+        </p>
+        <p class="pc-audience">
+          Built for commercial real estate brokers, acquisitions teams, asset
+          managers, owners, operators, and developers.
+        </p>
+        <div class="pc-cta-row">
+          <a class="pc-btn" href="#book-demo">BOOK A DEMO</a>
+          <a class="pc-link" href="#dashboard">VIEW PRODUCT DASHBOARD &rarr;</a>
+        </div>
+        <ul class="pc-proof" role="list">
+          <li><span class="pc-proof-num">281K+</span><span class="pc-proof-label">PARCELS INDEXED</span></li>
+          <li><span class="pc-proof-num">NIGHTLY</span><span class="pc-proof-label">PUBLIC-RECORD SCANS</span></li>
+          <li><span class="pc-proof-num">PUBLIC RECORDS</span><span class="pc-proof-label">MONITORED FOR CHANGE</span></li>
+        </ul>
       </div>
-      <p class="detail-back"><a href="/#ventures">← Index of Ventures</a></p>
-    </article>
+    </header>
+
+    <!-- 2 ─ PRODUCT DASHBOARD ──────────────────────────────────────────── -->
+    <section class="pc-section" id="dashboard" aria-labelledby="pc-dashboard-h">
+      <div class="pc-container">
+        <h2 class="pc-h2" id="pc-dashboard-h">PRODUCT DASHBOARD</h2>
+        <figure class="pc-shot">
+          <img
+            src="/assets/parcentry-dashboard.png"
+            width="1600"
+            height="903"
+            alt="Parcentry dashboard showing commercial-property monitoring and public-record intelligence."
+            decoding="async"
+          />
+          <figcaption>Representative product view. No customer information displayed.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 ─ HOW IT WORKS ───────────────────────────────────────────────── -->
+    <section class="pc-section pc-alt" id="how" aria-labelledby="pc-how-h">
+      <div class="pc-container">
+        <h2 class="pc-h2" id="pc-how-h">HOW IT WORKS</h2>
+        <ol class="pc-steps" role="list">
+          <li>
+            <p class="pc-step-num">01</p>
+            <h3 class="pc-step-h">DEFINE COVERAGE</h3>
+            <p>Select the properties, ownership groups, or target markets that matter to your team.</p>
+          </li>
+          <li>
+            <p class="pc-step-num">02</p>
+            <h3 class="pc-step-h">MONITOR PUBLIC RECORDS</h3>
+            <p>Parcentry checks available public-record sources for ownership, lien, permit, zoning, and recorded-document activity.</p>
+          </li>
+          <li>
+            <p class="pc-step-num">03</p>
+            <h3 class="pc-step-h">REVIEW CHANGES</h3>
+            <p>Detected changes are organized into property-level intelligence so your team can review what changed and decide what to do next.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4 ─ DATA SOURCES & COVERAGE ────────────────────────────────────── -->
+    <section class="pc-section" id="data" aria-labelledby="pc-data-h">
+      <div class="pc-container">
+        <h2 class="pc-h2" id="pc-data-h">DATA SOURCES &amp; COVERAGE</h2>
+        <p class="pc-intro">
+          Parcentry monitors available public-record sources. Source availability
+          and update frequency vary by jurisdiction.
+        </p>
+        <ul class="pc-sources" role="list">
+          <li>County recorder and register-of-deeds records</li>
+          <li>Assessor and property records</li>
+          <li>Ownership and transfer filings</li>
+          <li>Liens and recorded documents</li>
+          <li>Permit records where available</li>
+          <li>Zoning and land-use records where available</li>
+          <li>Entity and ownership records where available</li>
+        </ul>
+        <p class="pc-note">
+          Coverage varies by county, municipality, record type, and source
+          availability. Market-specific coverage is reviewed during the demo and
+          pilot process.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5 ─ SECURITY & DATA HANDLING ───────────────────────────────────── -->
+    <section class="pc-section pc-alt" id="security" aria-labelledby="pc-sec-h">
+      <div class="pc-container">
+        <h2 class="pc-h2" id="pc-sec-h">SECURITY &amp; DATA HANDLING</h2>
+        <p class="pc-intro">
+          Parcentry is built around monitoring public-record sources and
+          organizing property-level change information.
+        </p>
+        <p class="pc-intro">
+          Security, access-control, retention, and pilot data-handling details
+          are reviewed directly with participating teams.
+        </p>
+        <p class="pc-tag">TECHNICAL REVIEW AVAILABLE DURING PILOT</p>
+      </div>
+    </section>
+
+    <!-- 6 ─ REPRESENTATIVE OUTPUT ──────────────────────────────────────── -->
+    <section class="pc-section" id="output" aria-labelledby="pc-out-h">
+      <div class="pc-container">
+        <h2 class="pc-h2" id="pc-out-h">REPRESENTATIVE OUTPUT</h2>
+        <p class="pc-intro">
+          Representative alerts and property briefs are reviewed during product
+          demonstrations.
+        </p>
+        <a class="pc-link" href="#book-demo">BOOK A DEMO &rarr;</a>
+      </div>
+    </section>
+
+    <!-- 7 ─ BOOK A DEMO ────────────────────────────────────────────────── -->
+    <section class="pc-section pc-alt" id="book-demo" aria-labelledby="pc-demo-h">
+      <div class="pc-container">
+        <h2 class="pc-h2" id="pc-demo-h">BOOK A DEMO</h2>
+        <p class="pc-intro">
+          Tell us which market, ownership group, or properties you want to
+          monitor. We&rsquo;ll walk through the current product and review
+          available coverage.
+        </p>
+        <div class="pc-cta-row">
+          {demoUrl ? (
+            <a class="pc-btn" href={demoUrl} target="_blank" rel="noopener noreferrer">SCHEDULE DEMO &rarr;</a>
+          ) : (
+            <a class="pc-btn" href={demoMailto}>REQUEST DEMO &rarr;</a>
+          )}
+          <a class="pc-email" href="mailto:felipe@fariainnovations.com">felipe@fariainnovations.com</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 ─ MINIMAL FOOTER ─────────────────────────────────────────────── -->
+    <footer class="pc-footer">
+      <div class="pc-container">
+        <p class="pc-foot-name">Parcentry</p>
+        <p class="pc-foot-tag">Public-record change intelligence for commercial real estate.</p>
+        <p class="pc-foot-built">Built by Faria Innovations.</p>
+        <p class="pc-foot-legal">© 2026 Faria Innovations LLC · PATENTS PENDING</p>
+      </div>
+    </footer>
   </div>
 </BaseLayout>
+
+<style>
+  /* ── Parcentry product-page palette (scoped, does not touch the Faria site) ── */
+  .pc {
+    --pc-navy: #22304D;
+    --pc-paper: #F6F3EC;
+    --pc-ink: #16161A;
+    --pc-gray: #64748B;
+    --pc-hair: #C8C2B8;
+    --pc-sienna: #B4541D;
+
+    background: var(--pc-paper);
+    color: var(--pc-ink);
+    font-family: var(--font-text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .pc-container {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  /* ── Top bar ── */
+  .pc-topbar {
+    border-bottom: 1px solid var(--pc-hair);
+  }
+  .pc-topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+  }
+  .pc-wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    font-size: 1.15rem;
+    color: var(--pc-navy);
+  }
+  .pc-back {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pc-gray);
+    text-decoration: none;
+  }
+  .pc-back:hover,
+  .pc-back:focus-visible { color: var(--pc-sienna); }
+
+  /* ── Section rhythm ── */
+  .pc-hero { padding-block: clamp(3rem, 7vw, 5.5rem); }
+  .pc-section { padding-block: clamp(2.75rem, 6vw, 4.5rem); }
+  .pc-alt { background: #EFEBE0; }
+  .pc-section + .pc-section { border-top: 1px solid var(--pc-hair); }
+
+  /* ── Hero ── */
+  .pc-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pc-sienna);
+    margin: 0 0 1rem;
+  }
+  .pc-h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.1rem, 5.2vw, 3.6rem);
+    color: var(--pc-navy);
+    margin: 0 0 1.1rem;
+    max-width: 18ch;
+  }
+  .pc-lead {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.5;
+    color: var(--pc-ink);
+    margin: 0 0 0.9rem;
+    max-width: 56ch;
+  }
+  .pc-audience {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: var(--pc-gray);
+    margin: 0 0 1.75rem;
+    max-width: 56ch;
+  }
+
+  /* ── Buttons / links ── */
+  .pc-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+  }
+  .pc-btn {
+    display: inline-block;
+    background: var(--pc-navy);
+    color: var(--pc-paper);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid var(--pc-navy);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .pc-btn:hover,
+  .pc-btn:focus-visible {
+    background: var(--pc-sienna);
+    border-color: var(--pc-sienna);
+    color: #fff;
+  }
+  .pc-link {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pc-navy);
+    text-decoration: none;
+    border-bottom: 2px solid var(--pc-sienna);
+    padding-bottom: 2px;
+  }
+  .pc-link:hover,
+  .pc-link:focus-visible { color: var(--pc-sienna); }
+
+  /* ── Hero proof row ── */
+  .pc-proof {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--pc-hair);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .pc-proof li { display: flex; flex-direction: column; gap: 0.3rem; }
+  .pc-proof-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+    color: var(--pc-navy);
+    letter-spacing: 0.01em;
+  }
+  .pc-proof-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pc-gray);
+  }
+
+  /* ── Section headings (small sienna marker) ── */
+  .pc-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    letter-spacing: 0.01em;
+    color: var(--pc-navy);
+    margin: 0 0 1.5rem;
+    padding-left: 0.9rem;
+    border-left: 4px solid var(--pc-sienna);
+    line-height: 1.1;
+  }
+
+  /* ── Dashboard shot ── */
+  .pc-shot { margin: 0; }
+  .pc-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--pc-navy);
+  }
+  .pc-shot figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--pc-gray);
+    margin-top: 0.75rem;
+  }
+
+  /* ── How It Works ── */
+  .pc-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .pc-steps li {
+    border-top: 2px solid var(--pc-navy);
+    padding-top: 1rem;
+  }
+  .pc-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    color: var(--pc-sienna);
+    margin: 0 0 0.5rem;
+  }
+  .pc-step-h {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--pc-navy);
+    margin: 0 0 0.6rem;
+  }
+  .pc-steps p:last-child {
+    margin: 0;
+    font-size: 0.96rem;
+    line-height: 1.5;
+    color: var(--pc-ink);
+  }
+
+  /* ── Intro / note / sources ── */
+  .pc-intro {
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--pc-ink);
+    margin: 0 0 1.25rem;
+    max-width: 64ch;
+  }
+  .pc-sources {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--pc-hair);
+    max-width: 72ch;
+  }
+  .pc-sources li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--pc-hair);
+    font-size: 0.96rem;
+    color: var(--pc-ink);
+    padding-right: 1.5rem;
+  }
+  .pc-note {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--pc-gray);
+    margin: 0;
+    max-width: 64ch;
+  }
+  .pc-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pc-sienna);
+    border: 1px solid var(--pc-sienna);
+    padding: 0.5rem 0.85rem;
+    margin: 0.5rem 0 0;
+  }
+  .pc-email {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--pc-navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pc-hair);
+  }
+  .pc-email:hover,
+  .pc-email:focus-visible {
+    color: var(--pc-sienna);
+    border-color: var(--pc-sienna);
+  }
+
+  /* ── Footer ── */
+  .pc-footer {
+    background: var(--pc-navy);
+    color: var(--pc-paper);
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  .pc-foot-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+  }
+  .pc-foot-tag {
+    font-size: 0.95rem;
+    color: rgba(246, 243, 236, 0.78);
+    margin: 0 0 0.25rem;
+    max-width: 50ch;
+  }
+  .pc-foot-built {
+    font-size: 0.95rem;
+    color: rgba(246, 243, 236, 0.78);
+    margin: 0 0 1.5rem;
+  }
+  .pc-foot-legal {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: rgba(246, 243, 236, 0.55);
+    margin: 0;
+  }
+
+  /* ── Focus visibility (sienna) ── */
+  .pc a:focus-visible {
+    outline: 2px solid var(--pc-sienna);
+    outline-offset: 3px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 760px) {
+    .pc-proof { grid-template-columns: 1fr; gap: 1.1rem; }
+    .pc-steps { grid-template-columns: 1fr; }
+    .pc-sources { grid-template-columns: 1fr; }
+  }
+</style>

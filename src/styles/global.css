@@ -1507,7 +1507,15 @@ figcaption.parcel-map-caption strong {
   font-weight: 600;
 }
 .venture-row .venture-cta {
+  margin-top: 0;
+}
+/* Primary CTA + secondary "Book a Demo" action on one row. */
+.venture-actions {
   margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.5rem;
 }
 
 /* Operating Proof — statement-style list (longer sentences) */

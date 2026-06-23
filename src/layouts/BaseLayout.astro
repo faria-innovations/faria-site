@@ -8,13 +8,25 @@ interface Props {
   title?: string;
   description?: string;
   ogType?: 'website' | 'article';
+  // chrome=false omits the Faria parent header/footer so a route (e.g.
+  // /parcentry/) can present a self-contained product page with its own chrome.
+  chrome?: boolean;
+  // Per-page Open Graph image. Defaults to the Faria homepage OG image.
+  // Pass an absolute or root-relative path to override for a single route.
+  ogImage?: string;
 }
 
 const {
   title = `${site.name} — Software and Data Ventures`,
   description = `${site.name} builds and operates commercial software, data systems, and experimental technology ventures.`,
   ogType = 'website',
+  chrome = true,
+  ogImage,
 } = Astro.props;
+
+const ogImageUrl = ogImage
+  ? new URL(ogImage, site.url).href
+  : `${site.url}/og-image.png`;
 
 const rawPath = Astro.url.pathname;
 let canonical: string;
@@ -75,14 +87,14 @@ const buildTime = import.meta.env.VERCEL_GIT_COMMIT_REF
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={site.locale} />
-    <meta property="og:image" content={`${site.url}/og-image.png`} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${site.url}/og-image.png`} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
@@ -90,10 +102,10 @@ const buildTime = import.meta.env.VERCEL_GIT_COMMIT_REF
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
+    {chrome && <Header />}
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    {chrome && <Footer />}
   </body>
 </html>
