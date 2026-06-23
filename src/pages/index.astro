@@ -18,12 +18,18 @@ import { site } from '../data/site';
       <!-- left brand panel (navy) — cube blends on navy; wordmark in the
            reference Saira lockup style. -->
       <div class="tech-brand">
-        <div class="tech-brand-lockup">
-          <img class="tech-brand-cube" src="/assets/faria-cube-logo.png" alt=""
-            aria-hidden="true" width="72" height="72" decoding="async" />
-          <FariaWordmark width={208} label="Faria Innovations" />
+        <div class="tech-brand-top">
+          <div class="tech-brand-lockup">
+            <img class="tech-brand-cube" src="/assets/faria-cube-logo.png" alt=""
+              aria-hidden="true" width="72" height="72" decoding="async" />
+            <FariaWordmark width={208} label="Faria Innovations" />
+          </div>
+          <p class="tech-brand-class">TECHNOLOGY COMPANY</p>
         </div>
-        <p class="tech-brand-class">TECHNOLOGY COMPANY</p>
+        <dl class="tech-brand-foot">
+          <div><dt>INDEX</dt><dd>Parcentry · Labs</dd></div>
+          <div><dt>BASE</dt><dd>Beltsville, Maryland</dd></div>
+        </dl>
       </div>
 
       <!-- right company panel (paper) -->
@@ -37,19 +43,25 @@ import { site } from '../data/site';
           <a class="cta" href="#products">View Products&nbsp;→</a>
           <a class="tech-textlink" href="#contact">Partnership / Investor Inquiries</a>
         </div>
-
-        <figure class="tech-shot">
-          <img
-            src="/assets/parcentry-dashboard.png"
-            width="1600"
-            height="903"
-            alt="Parcentry dashboard showing commercial-property monitoring and public-record intelligence."
-            decoding="async"
-            fetchpriority="high"
-          />
-          <figcaption>Parcentry dashboard — active commercial software.</figcaption>
-        </figure>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRODUCT SHOWCASE ===================== -->
+  <section class="tech-showcase" aria-label="Parcentry, active commercial product">
+    <div class="container">
+      <p class="tech-showcase-label">PARCENTRY · ACTIVE COMMERCIAL SOFTWARE</p>
+      <figure class="tech-shot">
+        <img
+          src="/assets/parcentry-dashboard.png"
+          width="1600"
+          height="903"
+          alt="Parcentry dashboard showing commercial-property monitoring and public-record intelligence."
+          decoding="async"
+          fetchpriority="high"
+        />
+        <figcaption>Parcentry dashboard — active commercial software.</figcaption>
+      </figure>
     </div>
   </section>
 

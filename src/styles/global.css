@@ -1555,17 +1555,22 @@ figcaption.parcel-map-caption strong {
   grid-template-columns: 1fr;
 }
 @media (min-width: 900px) {
-  .tech-hero-grid { grid-template-columns: 5fr 7fr; min-height: 620px; }
+  /* compact, balanced split — dashboard now lives in its own showcase
+     section below, so neither column stretches into an empty void. */
+  .tech-hero-grid { grid-template-columns: 5fr 7fr; min-height: 480px; }
 }
 .tech-brand {
   background: var(--navy-950);
   color: var(--paper);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.4rem;
+  /* distribute: lockup up top, index/base stamp anchored at the bottom,
+     so a tall column reads as composition instead of an empty void. */
+  justify-content: space-between;
+  gap: 2.5rem;
   padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
 }
+.tech-brand-top { display: flex; flex-direction: column; gap: 1.3rem; }
 .tech-brand-lockup {
   display: flex;
   align-items: center;
@@ -1581,6 +1586,24 @@ figcaption.parcel-map-caption strong {
   text-transform: uppercase;
   color: rgba(244, 241, 232, 0.72);
   margin: 0;
+}
+/* bottom stamp — small index/base anchor that fills the panel height */
+.tech-brand-foot {
+  margin: 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(244, 241, 232, 0.18);
+  display: grid;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+.tech-brand-foot > div { display: grid; grid-template-columns: 4.5rem 1fr; gap: 0.75rem; }
+.tech-brand-foot dt { color: rgba(244, 241, 232, 0.55); text-transform: uppercase; letter-spacing: 0.12em; }
+.tech-brand-foot dd { margin: 0; color: var(--paper); }
+@media (max-width: 899px) {
+  /* on mobile the panel is short — no void; tighten the gap */
+  .tech-brand { gap: 1.6rem; }
 }
 .tech-company {
   background: var(--paper);
@@ -1636,7 +1659,21 @@ figcaption.parcel-map-caption strong {
 }
 .tech-textlink:hover, .tech-textlink:focus-visible { color: var(--blue); }
 
-.tech-shot { margin: 0.6rem 0 0; }
+/* ---- PRODUCT SHOWCASE (dashboard, full-width below the hero) ---- */
+.tech-showcase {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--hairline);
+}
+.tech-showcase-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin: 0 0 1.25rem;
+}
+.tech-shot { margin: 0; }
 .tech-shot img {
   display: block;
   width: 100%;
@@ -1648,7 +1685,7 @@ figcaption.parcel-map-caption strong {
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   color: var(--gray);
-  margin-top: 0.55rem;
+  margin-top: 0.75rem;
 }
 
 /* ---- PROOF STRIP ---- */
