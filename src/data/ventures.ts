@@ -57,11 +57,7 @@ export const ventures: Venture[] = [
     description: 'Tracks public-record changes across commercial properties.',
     entry: '/parcentry',
     stage: 'ACTIVE PRODUCT',
-    proof: [
-      '281K+ parcels indexed',
-      'Nightly public-record scans',
-      'Public records monitored',
-    ],
+    // Proof metrics live only in the global proof strip — not duplicated here.
     cta: {
       label: 'View Parcentry →',
       href: 'https://parcentry.com',
