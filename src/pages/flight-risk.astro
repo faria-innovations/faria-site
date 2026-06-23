@@ -1,20 +1,22 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+// Flight Risk has moved to Faria Innovations Media. This route now
+// redirects to the standalone Flight Risk site. Kept as a redirect (not a
+// dead page) and intentionally not linked from navigation.
+const target = 'https://flightriskshow.com';
 ---
 
-<BaseLayout
-  title="Flight Risk — Faria Innovations"
-  description="Flight Risk — an ongoing world about leaving. Animated, written, scored, never finished."
->
-  <div class="container">
-    <article class="detail">
-      <p class="detail-category">ANIMATED SERIES</p>
-      <h1 class="detail-title">FLIGHT RISK</h1>
-      <div class="detail-body">
-        <p>An ongoing world about leaving.</p>
-        <p>Animated, written, scored, never finished.</p>
-      </div>
-      <p class="detail-back"><a href="/#ventures">← Index of Ventures</a></p>
-    </article>
-  </div>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={target} />
+    <title>Redirecting to Flight Risk…</title>
+    <script type="text/javascript" set:html={`location.replace(${JSON.stringify(target)});`}></script>
+  </head>
+  <body>
+    <p>Flight Risk has moved. Redirecting to <a href={target}>flightriskshow.com</a>…</p>
+  </body>
+</html>

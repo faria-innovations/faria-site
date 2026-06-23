@@ -1,0 +1,56 @@
+---
+// FariaLockup — cube mark + straight FARIA / INNOVATIONS in live HTML text.
+//   [CUBE]  FARIA
+//           INNOVATIONS
+// No curve, no slant, no badge, no glow. Text color inherits (currentColor)
+// so it works on paper (navy text) and on navy panels (paper text).
+//
+// Note: faria-cube-logo.png carries a baked dark-navy field (not
+// transparent), so it reads as a small dark square mark on light surfaces
+// and blends on navy surfaces. Flagged for a transparent/vector cube in
+// the preview report.
+
+interface Props {
+  /** Cube mark size in px. */
+  cube?: number;
+  /** FARIA cap size (any CSS length). INNOVATIONS derives from it. */
+  faria?: string;
+  /** Decorative cube? alt stays empty; text carries the name. */
+  label?: string;
+  class?: string;
+}
+const { cube = 44, faria = '1.3rem', label = 'Faria Innovations', class: className = '' } = Astro.props;
+---
+
+<span class={`flock ${className}`} style={`--faria:${faria};`}>
+  <img class="flock-cube" src="/assets/faria-cube-logo.png" alt="" aria-hidden="true"
+    width={cube} height={cube} decoding="async" style={`width:${cube}px;height:${cube}px;`} />
+  <span class="flock-type" aria-label={label}>
+    <span class="flock-faria">FARIA</span>
+    <span class="flock-innov">INNOVATIONS</span>
+  </span>
+</span>
+
+<style>
+  .flock { display: inline-flex; align-items: center; gap: 0.7rem; color: inherit; }
+  .flock-cube { display: block; flex-shrink: 0; }
+  .flock-type { display: flex; flex-direction: column; font-size: var(--faria); line-height: 1; }
+  .flock-faria {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1em;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: currentColor;
+  }
+  .flock-innov {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.31em;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-top: 0.42em;
+    color: currentColor;
+    opacity: 0.92;
+  }
+</style>

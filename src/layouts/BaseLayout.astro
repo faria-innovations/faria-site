@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = `${site.name} — Venture Index`,
-  description = `${site.name} indexes Parcentry, Flight Risk, Labs, and future work by ${site.founder}.`,
+  title = `${site.name} — Software and Data Ventures`,
+  description = `${site.name} builds and operates commercial software, data systems, and experimental technology ventures.`,
   ogType = 'website',
 } = Astro.props;
 
@@ -30,6 +30,8 @@ const organizationLd = {
   '@type': 'Organization',
   name: site.legalName,
   url: site.url,
+  description:
+    'Faria Innovations builds and operates commercial software, data systems, and experimental technology ventures.',
   founder: { '@type': 'Person', name: site.founder },
   address: {
     '@type': 'PostalAddress',
@@ -61,8 +63,8 @@ const buildTime = import.meta.env.VERCEL_GIT_COMMIT_REF
     <meta name="description" content={description} />
     <meta name="author" content={site.founder} />
     <meta name="robots" content="index, follow" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#00041B" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#F4F1E8" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title={`${site.name} — notes`} href="/notes/rss.xml" />

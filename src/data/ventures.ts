@@ -11,10 +11,12 @@ export interface VentureMetadataField {
 }
 
 export interface VentureCTA {
-  /** Visible label, e.g. "Request Demo" */
+  /** Visible label, e.g. "View Parcentry →" */
   label: string;
-  /** href — mailto / route / anchor */
+  /** href — external URL / route / anchor */
   href: string;
+  /** Opens in a new tab with rel="noopener noreferrer". */
+  external?: boolean;
 }
 
 export interface Venture {
@@ -46,49 +48,35 @@ export interface Venture {
   atmosphere?: 'standard' | 'cinematic';
 }
 
+// Technology positioning only. Entertainment (Flight Risk) has moved to
+// Faria Innovations Media and is intentionally absent from this site.
 export const ventures: Venture[] = [
   {
     category: 'COMMERCIAL REAL ESTATE INTELLIGENCE',
     name: 'Parcentry',
-    description: 'Commercial real estate intelligence.',
-    expanded: 'Tracks public-record changes across commercial properties.',
+    description: 'Tracks public-record changes across commercial properties.',
     entry: '/parcentry',
-    external: { href: 'https://parcentry.com', label: 'parcentry.com →' },
     stage: 'ACTIVE PRODUCT',
     proof: [
-      '281,476 parcels indexed',
-      'Nightly scans',
+      '281K+ parcels indexed',
+      'Nightly public-record scans',
       'Public records monitored',
     ],
     cta: {
-      label: 'Request Demo',
-      href: 'mailto:felipe@fariainnovations.com?subject=Parcentry%20Demo%20Request',
+      label: 'View Parcentry →',
+      href: 'https://parcentry.com',
+      external: true,
     },
     atmosphere: 'standard',
   },
   {
-    category: 'ORIGINAL ANIMATED IP',
-    name: 'Flight Risk',
-    description: 'Original animated IP.',
-    expanded: 'An ongoing animated world in development.',
-    entry: '/flight-risk',
-    external: { href: 'https://flightriskshow.com', label: 'flightriskshow.com →' },
-    stage: 'IN DEVELOPMENT',
-    cta: {
-      label: 'View Entry',
-      href: '/flight-risk/',
-    },
-    atmosphere: 'cinematic',
-  },
-  {
-    category: 'EXPERIMENTAL SYSTEMS · PROTOTYPES',
+    category: 'TECHNOLOGY EXPERIMENTS',
     name: 'Labs',
-    description: 'Experimental systems and prototypes.',
-    expanded: 'Early-stage tools, notes, and internal systems.',
+    description: 'Internal prototypes, tools, and working systems that may become future ventures.',
     entry: '#labs',
     stage: 'WORKING FIELD',
     cta: {
-      label: 'View Labs',
+      label: 'View Labs →',
       href: '#labs',
     },
     atmosphere: 'standard',
