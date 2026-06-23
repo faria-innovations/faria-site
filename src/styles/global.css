@@ -124,8 +124,11 @@ a:hover { color: var(--navy); }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--paper);
-  border-bottom: 2px solid var(--ink);
+  /* Inverted dark masthead: the cube mark's baked navy field blends into
+     the header, so no square shows around it. */
+  background: var(--navy-950);
+  color: var(--paper);
+  border-bottom: 1px solid rgba(244, 241, 232, 0.16);
 }
 /* On phones, the masthead takes too much of the viewport — let it
    scroll off instead of chasing the user. Desktop keeps sticky. */
@@ -144,26 +147,26 @@ a:hover { color: var(--navy); }
 .header-lockup {
   display: flex;
   align-items: center;
-  gap: 1.1rem;
-  color: var(--navy);
+  gap: 0.9rem;
+  color: var(--paper); /* cream wordmark on the dark masthead */
 }
-.header-lockup:hover { color: var(--ink); }
-.header-lockup .header-fi {
+.header-lockup:hover { color: var(--paper); }
+.header-lockup .header-cube {
   width: 42px;
   height: 42px;
   flex-shrink: 0;
   display: block;
-  /* Engineered "Fi" registration tile — navy strokes on the paper
-     masthead. Transparent: no plate, no square. */
+  /* Cube mark — its baked navy field blends into the dark masthead, so
+     no square shows around it. */
 }
 .header-lockup .header-wordmark {
   height: auto;
   display: block;
-  color: var(--navy); /* reference Saira lockup, navy on paper */
+  color: var(--paper); /* reference Saira lockup, cream on navy */
 }
 @media (max-width: 480px) {
   .header-lockup .header-wordmark { width: 138px; }
-  .header-lockup .header-fi { width: 38px; height: 38px; }
+  .header-lockup .header-cube { width: 38px; height: 38px; }
 }
 
 .site-nav {
@@ -174,9 +177,9 @@ a:hover { color: var(--navy); }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: rgba(244, 241, 232, 0.7);
 }
-.site-nav a:hover { color: var(--ink); }
+.site-nav a:hover { color: var(--paper); }
 
 /* ------------------------------------------------------------ */
 /* REGISTRY METADATA BLOCK                                      */
@@ -1546,8 +1549,16 @@ figcaption.parcel-map-caption strong {
   margin: 0 0 2rem;
 }
 
-/* ---- SPLIT HERO ---- */
+/* ---- HERO (single column, paper) ---- */
 .tech-hero { border-bottom: 1px solid var(--hairline); }
+.tech-hero-inner {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 60ch;
+}
+/* ---- (legacy split-hero rules retained, unused) ---- */
 .tech-hero-grid {
   max-width: var(--page-max);
   margin-inline: auto;

@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionMarker from '../components/SectionMarker.astro';
 import LabsCartographMap from '../components/LabsCartographMap.astro';
-import FariaWordmark from '../components/FariaWordmark.astro';
 import { ventures } from '../data/ventures';
 import { labs } from '../data/labs';
 import { site } from '../data/site';
@@ -12,37 +11,17 @@ import { site } from '../data/site';
   title="Faria Innovations — Software and Data Ventures"
   description="Faria Innovations builds and operates commercial software, data systems, and experimental technology ventures."
 >
-  <!-- ===================== SPLIT HERO ===================== -->
+  <!-- ===================== HERO (single column) ===================== -->
   <section class="tech-hero" id="top" aria-labelledby="tech-hero-h1">
-    <div class="tech-hero-grid">
-      <!-- left brand panel (navy) — cube blends on navy; wordmark in the
-           reference Saira lockup style. -->
-      <div class="tech-brand">
-        <div class="tech-brand-top">
-          <div class="tech-brand-lockup">
-            <img class="tech-brand-cube" src="/assets/faria-cube-logo.png" alt=""
-              aria-hidden="true" width="72" height="72" decoding="async" />
-            <FariaWordmark width={208} label="Faria Innovations" />
-          </div>
-          <p class="tech-brand-class">TECHNOLOGY COMPANY</p>
-        </div>
-        <dl class="tech-brand-foot">
-          <div><dt>INDEX</dt><dd>Parcentry · Labs</dd></div>
-          <div><dt>BASE</dt><dd>Beltsville, Maryland</dd></div>
-        </dl>
-      </div>
-
-      <!-- right company panel (paper) -->
-      <div class="tech-company">
-        <p class="tech-eyebrow">FARIA INNOVATIONS LLC</p>
-        <h1 class="tech-h1" id="tech-hero-h1">Software and data ventures built to operate.</h1>
-        <p class="tech-lede">
-          Faria Innovations builds and operates commercial software, data systems, and early-stage technology ventures.
-        </p>
-        <div class="tech-cta-row">
-          <a class="cta" href="#products">View Products&nbsp;→</a>
-          <a class="tech-textlink" href="#contact">Partnership / Investor Inquiries</a>
-        </div>
+    <div class="container tech-hero-inner">
+      <p class="tech-eyebrow">FARIA INNOVATIONS LLC · TECHNOLOGY COMPANY</p>
+      <h1 class="tech-h1" id="tech-hero-h1">Software and data ventures built to operate.</h1>
+      <p class="tech-lede">
+        Faria Innovations builds and operates commercial software, data systems, and early-stage technology ventures.
+      </p>
+      <div class="tech-cta-row">
+        <a class="cta" href="#products">View Products&nbsp;→</a>
+        <a class="tech-textlink" href="#contact">Partnership / Investor Inquiries</a>
       </div>
     </div>
   </section>
