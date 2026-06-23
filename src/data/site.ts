@@ -2,7 +2,7 @@ export const site = {
   name: 'Faria Innovations',
   shortName: 'Faria',
   legalName: 'Faria Innovations LLC',
-  descriptor: 'software, animation, and experiments, indexed under one name',
+  descriptor: 'commercial software, data systems, and experimental technology ventures',
   domain: 'fariainnovations.com',
   url: 'https://fariainnovations.com',
   locale: 'en_US',
@@ -22,8 +22,8 @@ export const site = {
   // Used by the hero "INDEX STATE" line and the footer "LAST FILED" stamp.
   lastUpdated: '2026-05-25',
   // Ventures named here are used for JSON-LD subOrganization references.
+  // Entertainment (Flight Risk) moved to Faria Innovations Media — removed here.
   ventures: [
-    { name: 'Parcentry',  url: 'https://parcentry.com' },
-    { name: 'Flight Risk' },
+    { name: 'Parcentry', url: 'https://parcentry.com' },
   ],
 } as const;

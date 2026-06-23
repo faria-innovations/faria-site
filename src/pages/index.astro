@@ -2,138 +2,90 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionMarker from '../components/SectionMarker.astro';
 import LabsCartographMap from '../components/LabsCartographMap.astro';
+import FariaLockup from '../components/FariaLockup.astro';
 import { ventures } from '../data/ventures';
 import { labs } from '../data/labs';
 import { site } from '../data/site';
 ---
 
 <BaseLayout
-  title="Faria Innovations — Software, Media, and Experimental Ventures"
-  description="Faria Innovations builds and operates software, media, and experimental ventures. Current work: Parcentry (commercial real estate intelligence), Flight Risk (original animated IP), Labs (early-stage experiments)."
+  title="Faria Innovations — Software and Data Ventures"
+  description="Faria Innovations builds and operates commercial software, data systems, and experimental technology ventures."
 >
-  <section class="faria-hero hero-split" id="faria-hero" aria-labelledby="faria-hero-title">
-    <div class="container hero-split-grid">
-      <div class="hero-split-logo">
-        <img
-          class="hero-logo-lockup"
-          src="/assets/faria-hero-lockup.png"
-          width="420"
-          alt="Faria Innovations"
-          decoding="async"
-          fetchpriority="high"
-        />
+  <!-- ===================== SPLIT HERO ===================== -->
+  <section class="tech-hero" id="top" aria-labelledby="tech-hero-h1">
+    <div class="tech-hero-grid">
+      <!-- left brand panel (navy) -->
+      <div class="tech-brand">
+        <FariaLockup cube={68} faria="2rem" class="tech-brand-lockup" />
+        <p class="tech-brand-class">TECHNOLOGY VENTURE COMPANY</p>
       </div>
-      <div class="hero-split-body">
-        <h2 class="faria-hero-title" id="faria-hero-title">
-          <em class="faria-name">Faria Innovations</em> builds and operates software, media, and experimental ventures.
-        </h2>
-        <p class="faria-hero-sub">
-          A venture studio turning deep domain expertise into working products. Current work spans commercial real estate intelligence, original animated IP, and early-stage systems&nbsp;— each venture built to operate, not just to demo.
+
+      <!-- right company panel (paper) -->
+      <div class="tech-company">
+        <p class="tech-eyebrow">FARIA INNOVATIONS LLC</p>
+        <h1 class="tech-h1" id="tech-hero-h1">Software and data ventures built to operate.</h1>
+        <p class="tech-lede">
+          Faria Innovations builds and operates commercial software, data systems, and early-stage technology ventures.
         </p>
-        <div class="faria-hero-ctas">
-          <a class="cta" href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20Inquiry">Partnership / Investment Inquiry</a>
-          <a class="cta cta--ghost" href="#ventures">View Current Ventures&nbsp;→</a>
+        <div class="tech-cta-row">
+          <a class="cta" href="#products">View Products&nbsp;→</a>
+          <a class="tech-textlink" href="#contact">Partnership / Investor Inquiries</a>
         </div>
+
+        <figure class="tech-shot">
+          <img
+            src="/assets/parcentry-dashboard.png"
+            width="1600"
+            height="903"
+            alt="Parcentry dashboard showing commercial-property monitoring and public-record intelligence."
+            decoding="async"
+            fetchpriority="high"
+          />
+          <figcaption>Parcentry dashboard — active commercial software.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="faria-proof-row" aria-label="Operating signals">
+  <!-- ===================== PROOF STRIP ===================== -->
+  <section class="tech-proof" aria-label="Operating signals">
     <div class="container">
-      <ul class="proof-row-list" role="list">
-        <li class="proof-row-item">
-          <span class="proof-row-num">281,476</span>
-          <span class="proof-row-label">Parcels indexed</span>
-        </li>
-        <li class="proof-row-item">
-          <span class="proof-row-num">Nightly</span>
-          <span class="proof-row-label">Public-record scans</span>
-        </li>
-        <li class="proof-row-item">
-          <span class="proof-row-num">Original IP</span>
-          <span class="proof-row-label">In development</span>
-        </li>
-        <li class="proof-row-item">
-          <span class="proof-row-num">Active</span>
-          <span class="proof-row-label">Venture build pipeline</span>
-        </li>
+      <ul class="tech-proof-list" role="list">
+        <li class="tech-proof-item"><span class="tech-proof-num">281K+</span><span class="tech-proof-label">Parcels indexed</span></li>
+        <li class="tech-proof-item"><span class="tech-proof-num">Nightly</span><span class="tech-proof-label">Public-record scans</span></li>
+        <li class="tech-proof-item"><span class="tech-proof-num">Active</span><span class="tech-proof-label">Commercial product</span></li>
+        <li class="tech-proof-item"><span class="tech-proof-num">Ongoing</span><span class="tech-proof-label">Technology experiments</span></li>
       </ul>
     </div>
   </section>
 
-  <section class="registry-meta">
-    <dl class="container registry-fields">
-      <div class="registry-field"><dt>FILE</dt><dd>{site.legalName}</dd></div>
-      <div class="registry-field"><dt>TYPE</dt><dd>PARENT COMPANY / VENTURE INDEX</dd></div>
-      <div class="registry-field"><dt>INDEX</dt><dd>PARCENTRY / FLIGHT RISK / LABS</dd></div>
-      <div class="registry-field"><dt>LOCATION</dt><dd>BELTSVILLE, MARYLAND</dd></div>
-      <div class="registry-field"><dt>LAST FILED</dt><dd>{site.lastUpdated}</dd></div>
-    </dl>
-  </section>
-
-  <section class="cred-section" id="what-faria-does" aria-labelledby="what-faria-label">
+  <!-- ===================== PRODUCTS & VENTURES ===================== -->
+  <section class="section" id="products" aria-labelledby="products-label">
     <div class="container">
-      <p class="cred-label" id="what-faria-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>WHAT FARIA DOES</span>
+      <SectionMarker num="01" label="CURRENT PRODUCTS & VENTURES" id="products-label" />
+      <p class="section-intro">
+        Faria builds focused technology ventures around operational problems and repeatable systems.
       </p>
-      <ol class="what-list" role="list">
-        <li>
-          <h3 class="what-list-title">Builds software</h3>
-          <p class="what-list-body">Commercial tools with operational use cases.</p>
-        </li>
-        <li>
-          <h3 class="what-list-title">Develops IP</h3>
-          <p class="what-list-body">Original worlds, characters, and entertainment concepts.</p>
-        </li>
-        <li>
-          <h3 class="what-list-title">Runs experiments</h3>
-          <p class="what-list-body">Small systems and prototypes that may become future ventures.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="ventures-section" id="ventures" aria-labelledby="ventures-label">
-    <div class="container dossier-grid">
-      <aside class="dossier-opener">
-        <span class="dossier-numeral" aria-hidden="true">01</span>
-        <p class="dossier-opener-label" id="ventures-label">CURRENT VENTURES</p>
-      </aside>
-
       <ol class="venture-list" role="list">
         {
           ventures.map((v) => (
-            <li class={`venture-row venture-row--${v.atmosphere ?? 'standard'}`}>
+            <li class="venture-row">
               <div class="venture-head">
                 <p class="venture-category">{v.category}</p>
-                <h3 class="venture-name">
-                  <a href={v.entry}>{v.name}</a>
-                </h3>
+                <h2 class="venture-name">{v.name}</h2>
                 <p class="venture-desc">{v.description}</p>
-                {v.expanded && <p class="venture-expanded">{v.expanded}</p>}
               </div>
-
-              <dl class="venture-stage">
-                <dt>STAGE</dt>
-                <dd>{v.stage}</dd>
-              </dl>
-
+              <dl class="venture-stage"><dt>STAGE</dt><dd>{v.stage}</dd></dl>
               {v.proof && v.proof.length > 0 && (
-                <ul class="venture-proof" role="list">
-                  {v.proof.map((p) => <li>{p}</li>)}
-                </ul>
+                <ul class="venture-proof" role="list">{v.proof.map((p) => <li>{p}</li>)}</ul>
               )}
-
-              {v.cta && (
-                <a class="cta venture-cta" href={v.cta.href}>{v.cta.label}</a>
-              )}
-
-              {v.external && (
-                <div class="venture-links">
-                  <a href={v.external.href} rel="noopener">{v.external.label}</a>
-                </div>
-              )}
+              {v.cta &&
+                (v.cta.external ? (
+                  <a class="cta venture-cta" href={v.cta.href} target="_blank" rel="noopener noreferrer">{v.cta.label}</a>
+                ) : (
+                  <a class="cta venture-cta" href={v.cta.href}>{v.cta.label}</a>
+                ))}
             </li>
           ))
         }
@@ -141,51 +93,49 @@ import { site } from '../data/site';
     </div>
   </section>
 
-  <section class="cred-section" id="operating-proof" aria-labelledby="op-proof-label">
+  <!-- ===================== OPERATING MODEL ===================== -->
+  <section class="section section--alt" id="operating-model" aria-labelledby="opmodel-label">
     <div class="container">
-      <p class="cred-label" id="op-proof-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>OPERATING PROOF</span>
-      </p>
-      <ul class="proof-statement-list" role="list">
-        <li>Parcentry is live as an active commercial software build.</li>
-        <li>281,476 parcels indexed.</li>
-        <li>Nightly public-record scans.</li>
-        <li>Flight Risk is an original animated IP in development.</li>
-        <li>Labs tracks early experiments and internal systems.</li>
-        <li>Faria has a live deployment pipeline and public venture index.</li>
+      <SectionMarker num="02" label="OPERATING MODEL" id="opmodel-label" />
+      <ol class="opmodel-list" role="list">
+        <li>
+          <h3 class="opmodel-step">Identify</h3>
+          <p class="opmodel-body">Start with a domain problem or technical opportunity with room to grow.</p>
+        </li>
+        <li>
+          <h3 class="opmodel-step">Build</h3>
+          <p class="opmodel-body">Turn the idea into a working product, system, or prototype.</p>
+        </li>
+        <li>
+          <h3 class="opmodel-step">Operate</h3>
+          <p class="opmodel-body">Continue developing the ventures that earn traction.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== TECHNICAL CAPABILITY ===================== -->
+  <section class="section" id="capability" aria-labelledby="capability-label">
+    <div class="container">
+      <SectionMarker num="03" label="TECHNICAL CAPABILITY" id="capability-label" />
+      <ul class="capability-list" role="list">
+        <li>Nightly public-record scanning</li>
+        <li>Property-level monitoring</li>
+        <li>Change detection across public records</li>
+        <li>Production deployment on Vercel</li>
+        <li>Active product iteration</li>
+        <li>Internal prototype development</li>
       </ul>
     </div>
   </section>
 
-  <section class="cred-section" id="representative-alert" aria-labelledby="cred-alert-label">
+  <!-- ===================== LABS ===================== -->
+  <section class="section section--alt" id="labs" aria-labelledby="labs-label">
     <div class="container">
-      <p class="cred-label" id="cred-alert-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>REPRESENTATIVE ALERT</span>
+      <SectionMarker num="04" label="LABS" id="labs-label" />
+      <p class="section-intro">
+        Labs contains internal prototypes, technical experiments, and working systems that may become future ventures.
       </p>
-      <article class="rep-alert">
-        <p class="rep-alert-header">
-          <span class="accent-tick" aria-hidden="true">●</span>
-          <span>ALERT · PARCENTRY</span>
-        </p>
-        <h3 class="rep-alert-title">OWNERSHIP TRANSFER DETECTED</h3>
-        <dl class="rep-alert-fields">
-          <div class="rep-alert-row"><dt>Property</dt><dd>Example Commercial Property</dd></div>
-          <div class="rep-alert-row"><dt>Market</dt><dd>Nashville, TN</dd></div>
-          <div class="rep-alert-row"><dt>Recorded</dt><dd>May 12, 2026</dd></div>
-          <div class="rep-alert-row"><dt>Source</dt><dd>County Register of Deeds</dd></div>
-        </dl>
-        <p class="rep-alert-caption">
-          Representative output format. No customer data shown.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="labs" aria-labelledby="labs-label">
-    <div class="container">
-      <SectionMarker num="02" label="LABS · WORKING FIELD" id="labs-label" />
       <div class="labs-list">
         {
           labs.map((lab) => (
@@ -206,35 +156,27 @@ import { site } from '../data/site';
     </div>
   </section>
 
+  <!-- ===================== ABOUT ===================== -->
   <section class="section" id="about" aria-labelledby="about-label">
     <div class="container">
-      <SectionMarker num="03" label="ABOUT" id="about-label" />
+      <SectionMarker num="05" label="ABOUT" id="about-label" />
       <div class="plain-block">
         <p>Faria Innovations is operated by Felipe Alves Faria.</p>
-        <p>Beltsville, Maryland.</p>
+        <p>The company builds and houses software, data systems, and experimental technology ventures.</p>
+        <p>Current work includes Parcentry and Labs.</p>
+        <p>Based in Beltsville, Maryland.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contact" aria-labelledby="contact-label">
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section section--alt" id="contact" aria-labelledby="contact-label">
     <div class="container">
-      <SectionMarker num="04" label="CONTACT" id="contact-label" />
+      <SectionMarker num="06" label="PARTNERSHIP / INVESTOR INQUIRIES" id="contact-label" />
       <div class="plain-block">
-        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p><a href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20Inquiry">{site.email}</a></p>
         <p><a href={site.phoneHref}>{site.phone}</a></p>
       </div>
-    </div>
-  </section>
-
-  <section class="invest-line" id="invest" aria-labelledby="invest-label">
-    <div class="container">
-      <p class="cred-label" id="invest-label">
-        <span class="accent-tick" aria-hidden="true">▍</span>
-        <span>PARTNERSHIP / INVESTMENT INQUIRIES</span>
-      </p>
-      <p class="invest-email">
-        <a href="mailto:felipe@fariainnovations.com?subject=Faria%20Innovations%20Inquiry">felipe@fariainnovations.com</a>
-      </p>
     </div>
   </section>
 </BaseLayout>

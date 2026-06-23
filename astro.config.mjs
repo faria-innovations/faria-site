@@ -4,7 +4,12 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://fariainnovations.com',
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    // Exclude the /flight-risk redirect stub from the sitemap — it is a
+    // redirect to flightriskshow.com, not indexable content.
+    sitemap({ filter: (page) => !page.includes('/flight-risk') }),
+  ],
   markdown: {
     smartypants: true,
   },
