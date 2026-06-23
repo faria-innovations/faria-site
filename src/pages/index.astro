@@ -72,12 +72,19 @@ import { site } from '../data/site';
               {v.proof && v.proof.length > 0 && (
                 <ul class="venture-proof" role="list">{v.proof.map((p) => <li>{p}</li>)}</ul>
               )}
-              {v.cta &&
-                (v.cta.external ? (
-                  <a class="cta venture-cta" href={v.cta.href} target="_blank" rel="noopener noreferrer">{v.cta.label}</a>
-                ) : (
-                  <a class="cta venture-cta" href={v.cta.href}>{v.cta.label}</a>
-                ))}
+              {(v.cta || v.demo) && (
+                <div class="venture-actions">
+                  {v.cta &&
+                    (v.cta.external ? (
+                      <a class="cta venture-cta" href={v.cta.href} target="_blank" rel="noopener noreferrer">{v.cta.label}</a>
+                    ) : (
+                      <a class="cta venture-cta" href={v.cta.href}>{v.cta.label}</a>
+                    ))}
+                  {v.demo && (
+                    <a class="tech-textlink venture-demo" href={v.demo.href}>{v.demo.label}</a>
+                  )}
+                </div>
+              )}
             </li>
           ))
         }

@@ -11,20 +11,20 @@ export const labs: LabEntry[] = [
   {
     prefix: 'IN PROGRESS',
     name: 'labs-archive',
-    description: 'long-arc decision memory',
-    expanded: 'preserves decisions before they become folklore.',
+    description: 'Internal project history and long-term decision records.',
+    expanded: 'A record of past projects and the decisions behind them.',
   },
   {
     prefix: 'NOTE',
     name: 'labs-fieldnotes',
-    description: 'fragments before they become public',
-    expanded: 'catches rough material before it hardens into public work.',
+    description: 'Early research, technical notes, and operating observations.',
+    expanded: 'Working notes from research and day-to-day operations.',
   },
   {
     prefix: 'INDEX',
     name: 'labs-cartograph',
-    description: 'a map of ventures and unfinished threads',
-    expanded: 'shows what exists, what is dormant, and what is becoming real.',
+    description: 'A working map of active systems, prototypes, and future venture paths.',
+    expanded: 'Shows what is active, what is in prototype, and what may become a future venture.',
     cartograph: true,
   },
 ];
