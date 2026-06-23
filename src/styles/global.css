@@ -1572,26 +1572,15 @@ figcaption.parcel-map-caption strong {
   margin: 0 0 2rem;
 }
 
-/* ---- HERO (two columns: copy left, dashboard right — fills the width) ---- */
+/* ---- HERO (single full-width column — confident editorial statement) ---- */
 .tech-hero { border-bottom: 1px solid var(--hairline); }
-.tech-hero-grid2 {
-  padding-block: clamp(3rem, 6vw, 5rem);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 4vw, 3rem);
-  align-items: center;
-}
-@media (min-width: 900px) {
-  .tech-hero-grid2 { grid-template-columns: 1fr 1.05fr; gap: clamp(2.5rem, 5vw, 4.5rem); }
-}
-.tech-hero-copy {
+.tech-hero-inner {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.2rem;
-  min-width: 0;
+  gap: 1.5rem;
 }
-.tech-hero-figure { min-width: 0; }
 /* ---- (legacy split-hero rules retained, unused) ---- */
 .tech-hero-grid {
   max-width: var(--page-max);
@@ -1670,20 +1659,20 @@ figcaption.parcel-map-caption strong {
 .tech-h1 {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.2rem, 3.6vw, 3.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.01em;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
   color: var(--navy-800);
   margin: 0;
-  max-width: 18ch;
+  max-width: 20ch;
 }
 .tech-lede {
   font-family: var(--font-text);
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  line-height: 1.55;
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  line-height: 1.5;
   color: var(--ink);
   margin: 0;
-  max-width: 52ch;
+  max-width: 60ch;
 }
 .tech-cta-row {
   display: flex;
