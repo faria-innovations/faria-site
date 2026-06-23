@@ -68,6 +68,12 @@ import { site } from '../data/site';
                 <h2 class="venture-name">{v.name}</h2>
                 <p class="venture-desc">{v.description}</p>
               </div>
+              {v.shot && (
+                <figure class="venture-shot">
+                  <img src={v.shot.src} width="1600" height="903" alt={v.shot.alt} decoding="async" loading="lazy" />
+                  {v.shot.caption && <figcaption>{v.shot.caption}</figcaption>}
+                </figure>
+              )}
               <dl class="venture-stage"><dt>STAGE</dt><dd>{v.stage}</dd></dl>
               {v.proof && v.proof.length > 0 && (
                 <ul class="venture-proof" role="list">{v.proof.map((p) => <li>{p}</li>)}</ul>

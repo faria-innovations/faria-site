@@ -342,6 +342,21 @@ a:hover { color: var(--navy); }
 .venture-row:last-child { border-bottom: 1px solid var(--navy); }
 
 .venture-head { display: flex; flex-direction: column; gap: 0.6rem; }
+/* Product preview inside a venture entry */
+.venture-shot { margin: 0; max-width: 880px; }
+.venture-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--navy);
+}
+.venture-shot figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--gray);
+  margin-top: 0.6rem;
+}
 .venture-category {
   font-family: var(--font-mono);
   font-size: 0.7rem;

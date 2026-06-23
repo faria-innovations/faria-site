@@ -40,6 +40,8 @@ export interface Venture {
   cta?: VentureCTA;
   /** Optional secondary action (e.g. Book a Demo) shown beside the primary CTA. */
   demo?: VentureCTA;
+  /** Optional product screenshot rendered inside the venture entry. */
+  shot?: { src: string; alt: string; caption?: string };
   /** Optional signals (legacy field, unused in current rendering). */
   signals?: VentureSignal[];
   /** Optional metadata rows (legacy field, unused in current rendering). */
@@ -69,6 +71,12 @@ export const ventures: Venture[] = [
     demo: {
       label: 'Book a Demo',
       href: '/parcentry/#book-demo',
+    },
+    // Product preview shown inside the entry (public preview, sample data).
+    shot: {
+      src: '/assets/parcentry-dashboard.png',
+      alt: 'Parcentry product preview showing sample commercial-property monitoring and public-record activity.',
+      caption: 'Representative product interface using sample data. No customer information displayed.',
     },
     atmosphere: 'standard',
   },
