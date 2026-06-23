@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionMarker from '../components/SectionMarker.astro';
 import LabsCartographMap from '../components/LabsCartographMap.astro';
-import FariaLockup from '../components/FariaLockup.astro';
+import FariaWordmark from '../components/FariaWordmark.astro';
 import { ventures } from '../data/ventures';
 import { labs } from '../data/labs';
 import { site } from '../data/site';
@@ -15,9 +15,14 @@ import { site } from '../data/site';
   <!-- ===================== SPLIT HERO ===================== -->
   <section class="tech-hero" id="top" aria-labelledby="tech-hero-h1">
     <div class="tech-hero-grid">
-      <!-- left brand panel (navy) -->
+      <!-- left brand panel (navy) — cube blends on navy; wordmark in the
+           reference Saira lockup style. -->
       <div class="tech-brand">
-        <FariaLockup cube={68} faria="2rem" class="tech-brand-lockup" />
+        <div class="tech-brand-lockup">
+          <img class="tech-brand-cube" src="/assets/faria-cube-logo.png" alt=""
+            aria-hidden="true" width="72" height="72" decoding="async" />
+          <FariaWordmark width={208} label="Faria Innovations" />
+        </div>
         <p class="tech-brand-class">TECHNOLOGY VENTURE COMPANY</p>
       </div>
 

@@ -148,21 +148,22 @@ a:hover { color: var(--navy); }
   color: var(--navy);
 }
 .header-lockup:hover { color: var(--ink); }
-.header-lockup .header-badge {
-  width: 46px;
-  height: 46px;
+.header-lockup .header-fi {
+  width: 42px;
+  height: 42px;
   flex-shrink: 0;
   display: block;
-  /* The engineered "Fi" element tile — same mark as the browser-tab
-     favicon. Cream strokes on the navy masthead. */
+  /* Engineered "Fi" registration tile — navy strokes on the paper
+     masthead. Transparent: no plate, no square. */
 }
 .header-lockup .header-wordmark {
   height: auto;
   display: block;
+  color: var(--navy); /* reference Saira lockup, navy on paper */
 }
 @media (max-width: 480px) {
-  .header-lockup .header-wordmark { width: 124px; }
-  .header-lockup .header-badge { width: 40px; height: 40px; }
+  .header-lockup .header-wordmark { width: 138px; }
+  .header-lockup .header-fi { width: 38px; height: 38px; }
 }
 
 .site-nav {
@@ -1565,6 +1566,14 @@ figcaption.parcel-map-caption strong {
   gap: 1.4rem;
   padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
 }
+.tech-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--paper); /* cube blends on navy; wordmark renders paper */
+}
+.tech-brand-cube { display: block; flex-shrink: 0; width: 72px; height: 72px; }
+.tech-brand-lockup svg { display: block; }
 .tech-brand-class {
   font-family: var(--font-mono);
   font-size: 0.72rem;
